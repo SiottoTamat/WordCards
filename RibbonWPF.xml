@@ -3,8 +3,8 @@
   <ribbon>
     <tabs>
       <tab idMso="TabAddIns">
-        <group id="MyGroup"
-               label="Word Cards WPF">
+        <group id="WPFCards"
+               label="WPFCards">
           <toggleButton id="WPFCardButton" label="WPF"
                   screentip="Add Cards" onAction="WPFOnAddCards"
                   supertip="Add the cards system to this file"/>

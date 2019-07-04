@@ -27,6 +27,7 @@ namespace WordCards_WPF
               return new RibbonWPF();
           }
 
+        public int CheckifPanelOn = 0;
 
         #region VSTO generated code
 
@@ -39,7 +40,16 @@ namespace WordCards_WPF
             this.Startup += new System.EventHandler(ThisAddIn_Startup);
             this.Shutdown += new System.EventHandler(ThisAddIn_Shutdown);
         }
-        
+
+
+
+        #endregion
+        #region MY Methods
+        internal void InitializeCards()
+        {
+            UserControlWPF controlWPF = new UserControlWPF();
+        }
+
         #endregion
     }
 }

@@ -54,11 +54,24 @@ namespace WordCards_WPF
             this.ribbon = ribbonUI;
         }
 
-        #endregion
+        public void WPFOnAddCards(Office.IRibbonControl control, bool isPressed)
+        {
+            //System.Windows.Forms.MessageBox.Show(control.Id.ToString());
 
-        #region Helpers
+            
+                //System.Windows.Forms.MessageBox.Show("Initialize?");
+                if (Globals.ThisAddIn.CheckifPanelOn == 0)
+                {
+                    Globals.ThisAddIn.InitializeCards();
 
-        private static string GetResourceText(string resourceName)
+                }
+            
+        }
+            #endregion
+
+            #region Helpers
+
+            private static string GetResourceText(string resourceName)
         {
             Assembly asm = Assembly.GetExecutingAssembly();
             string[] resourceNames = asm.GetManifestResourceNames();
