@@ -5,16 +5,57 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WordCards_WPF"
              mc:Ignorable="d" VerticalAlignment="Top">
-    <Grid MinHeight="120" MinWidth="200">
-        <Canvas x:Name="CardCanvas">
-            
-        </Canvas>
-        <DockPanel Height="120" LastChildFill="False" VerticalAlignment="Top">
-            <Rectangle Fill="#FFF5E96D" Height="100" Canvas.Left="513" Stroke="Black" Canvas.Top="204" MinHeight="40" ForceCursor="True" MinWidth="100" DockPanel.Dock="Top" Margin="10">
-                <Rectangle.Effect>
-                    <DropShadowEffect ShadowDepth="7" Opacity="0.205"/>
-                </Rectangle.Effect>
-            </Rectangle>
+    <Grid MinHeight="110" MinWidth="200">
+
+        <DockPanel x:Name="CardDockPanel" Height="110" LastChildFill="False" VerticalAlignment="Top">
+
+            <Canvas x:Name="CardCanvas" Height="0" DockPanel.Dock="Top" Margin="10,5,10,0" MinHeight="100" Background="#FFFFEF4E" >
+                <Canvas.Effect>
+                    <DropShadowEffect Opacity="0.2"/>
+                </Canvas.Effect>
+                <Grid x:Name="CardGrid" Height="{Binding ActualHeight, RelativeSource={RelativeSource FindAncestor, AncestorType=Canvas}}" Width="{Binding ActualWidth, Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType=Canvas}}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width=".5*"/>
+                        <ColumnDefinition Width="1*"/>
+                        
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="1*" />
+                        <RowDefinition Height="1*" />
+                    </Grid.RowDefinitions>
+                
+                <Label x:Name="Text" Content="Label"  Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1" Grid.RowSpan="5" BorderBrush="#4C000000" BorderThickness="1" Background="#00000000" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="2" />
+                    <Viewbox Grid.Column="0" Grid.ColumnSpan="1" Grid.Row="0" HorizontalAlignment="Right">
+                        <Label x:Name="Bookmark" Content="Bookmark: "    Background="#00000000"  />
+                    </Viewbox>
+                    <Viewbox Grid.Column="1"  Grid.Row="0" HorizontalAlignment="Left">
+                        <Label x:Name="BookmarkName" Content="NONE"   Background="#00000000" />
+                    </Viewbox>
+                    <Viewbox Grid.Column="3"  Grid.Row="1" HorizontalAlignment="Right">
+                        <Label x:Name="W" Content="w:"   Background="#00000000" />
+                    </Viewbox>
+                    <Viewbox Grid.Column="3"  Grid.Row="2" HorizontalAlignment="Right">
+                        <Label x:Name="P" Content="p:"   Background="#00000000" />
+                    </Viewbox>
+                    <Viewbox Grid.Column="4"  Grid.Row="1" HorizontalAlignment="Left">
+                        <Label x:Name="Wordcount" Content="0"   Background="#00000000" />
+                    </Viewbox>
+                    <Viewbox Grid.Column="4"  Grid.Row="2" HorizontalAlignment="Left">
+                        <Label x:Name="Pages" Content="0"   Background="#00000000" />
+                    </Viewbox>
+                    <Viewbox Grid.Column="4"  Grid.Row="5" HorizontalAlignment="Center">
+                        <Label x:Name="Id" Content="1"   Background="#00000000" />
+                    </Viewbox>
+                </Grid>
+            </Canvas>
+
         </DockPanel>
 
     </Grid>

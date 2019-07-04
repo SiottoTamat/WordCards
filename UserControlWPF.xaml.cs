@@ -28,6 +28,7 @@ namespace WordCards_WPF
         private void AddCard_Click(object sender, RoutedEventArgs e)
         {
             CardControl card = new CardControl();
+            card.Text.Content = "Oddly satisfying?";
             Globals.ThisAddIn.stackpanelCards.Children.Add(card);
         }
     }
