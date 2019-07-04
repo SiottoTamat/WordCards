@@ -16,19 +16,13 @@ using System.Windows.Shapes;
 namespace WordCards_WPF
 {
     /// <summary>
-    /// Interaction logic for UserControlWPF.xaml
+    /// Interaction logic for CardControl.xaml
     /// </summary>
-    public partial class UserControlWPF : UserControl
+    public partial class CardControl : UserControl
     {
-        public UserControlWPF()
+        public CardControl()
         {
             InitializeComponent();
-        }
-
-        private void AddCard_Click(object sender, RoutedEventArgs e)
-        {
-            CardControl card = new CardControl();
-            Globals.ThisAddIn.stackpanelCards.Children.Add(card);
         }
     }
 }

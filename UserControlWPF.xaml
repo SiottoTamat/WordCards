@@ -6,10 +6,15 @@
              xmlns:local="clr-namespace:WordCards_WPF"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        <DockPanel x:Name="GeneraldockPanel" LastChildFill="False" Margin="10">
-            <GroupBox x:Name="Word_Cards" Header="GroupBox" Height="100" VerticalAlignment="Top" DockPanel.Dock="Top" Background="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}"/>
-            <StackPanel x:Name="StackPanel" Height="330" VerticalAlignment="Top" DockPanel.Dock="Top" Background="{DynamicResource {x:Static SystemColors.ControlDarkBrushKey}}"/>
+    <Grid x:Name="WPFUserControl">
+
+        <DockPanel x:Name="GeneraldockPanel" LastChildFill="False" Margin="0" Background="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}">
+            <GroupBox x:Name="Word_Cards" Header="" Height="100" VerticalAlignment="Top" DockPanel.Dock="Top" Background="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}">
+                <Button x:Name="AddCard" Content="Add Card" HorizontalAlignment="Left" Height="28" Margin="10,44,0,0" VerticalAlignment="Top" Width="75" Background="#FFDDDDDD" Click="AddCard_Click"/>
+            </GroupBox>
+            <ScrollViewer x:Name="StackPanelScrollViewer" VerticalScrollBarVisibility="Auto" Width="{Binding ActualWidth, Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:UserControlWPF}}}">
+                <StackPanel x:Name="StackPanel" Background="{DynamicResource {x:Static SystemColors.ControlDarkBrushKey}}" MinWidth="100" Margin="0" Width="{Binding Path=ViewportWidth, Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType=ScrollViewer}}"/>
+            </ScrollViewer>
         </DockPanel>
 
     </Grid>
