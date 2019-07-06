@@ -52,7 +52,7 @@ namespace WordCards_WPF
 
             Check_CustomXML();
             controlWPF.LoadXmltoListCardControls(myXML);
-            controlWPF.AddListCardControltoUI();
+           // controlWPF.AddListCardControltoUI();
             //myCustomTaskPane.Control.SizeChanged += new EventHandler(CustomTasKPane_SizeChanged);
             //myCustomTaskPane.VisibleChanged += new EventHandler(CustomTaskPane_VisibleChanged);
         }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,11 +25,12 @@ namespace WordCards_WPF
         public UserControlWPF()
         {
             InitializeComponent();
+            this.ListViewxaml.ItemsSource = ListCardControls;
         }
 
         #region VARIABLES
 
-        List<CardControl> ListCardControls = new List<CardControl>();
+        ObservableCollection<CardControl> ListCardControls = new ObservableCollection<CardControl>();
 
         #endregion
         #region MY METHODS
@@ -39,9 +41,9 @@ namespace WordCards_WPF
             card.Colorfield = System.Windows.Media.Color.FromRgb(250, 160, 160);
             AddCardtoUI(card);
         }
-        public void AddCardtoUI(CardControl card)
+        private void AddCardtoUI(CardControl card)
         {
-            this.StackPanelxaml.Children.Add(card);
+           // this.StackPanelxaml.Children.Add(card);
 
         }
 

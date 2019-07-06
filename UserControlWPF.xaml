@@ -13,7 +13,9 @@
                 <Button x:Name="AddCard" Content="Add Card" HorizontalAlignment="Left" Height="28" Margin="10,44,0,0" VerticalAlignment="Top" Width="75" Background="#FFDDDDDD" Click="AddCard_Click"/>
             </GroupBox>
             <ScrollViewer x:Name="StackPanelScrollViewer" VerticalScrollBarVisibility="Auto" Width="{Binding ActualWidth, Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:UserControlWPF}}}">
-                <StackPanel x:Name="StackPanelxaml" Background="{DynamicResource {x:Static SystemColors.ControlDarkBrushKey}}" MinWidth="100" Margin="0" Width="{Binding Path=ViewportWidth, Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType=ScrollViewer}}"/>
+                <ListView x:Name="ListViewxaml" Width="{Binding Path=ViewportWidth, Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType=ScrollViewer}}">
+                    
+                </ListView>
             </ScrollViewer>
         </DockPanel>
 
