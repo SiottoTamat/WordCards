@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Office = Microsoft.Office.Core;
 
 namespace WordCards_WPF
 {
@@ -25,6 +26,12 @@ namespace WordCards_WPF
             InitializeComponent();
         }
 
+        #region VARIABLES
+
+        List<CardControl> ListCardControls = new List<CardControl>();
+
+        #endregion
+        #region MY METHODS
         private void AddCard_Click(object sender, RoutedEventArgs e)
         {
             CardControl card = new CardControl();
@@ -37,5 +44,56 @@ namespace WordCards_WPF
             Globals.ThisAddIn.stackpanelCards.Children.Add(card);
 
         }
+
+        public void LoadXmltoListCardControls(Office.CustomXMLPart xmlPart)
+        {
+            CardControl card = new CardControl();
+            ListCardControls.Clear();
+
+            Office.CustomXMLNodes XMLnodes = xmlPart.SelectNodes("//node");
+            string colorstring = "";
+            foreach (Office.CustomXMLNode nodElem in XMLnodes)
+            {
+                card.Textfield = nodElem.Text;
+
+
+                foreach (Office.CustomXMLNode attr in nodElem.Attributes) // grab the attributes for the node tag
+                {
+
+                    if (attr.XML.Contains("id")) { card.IDfield = attr.NodeValue; }
+                    if (attr.XML.Contains("bookmark"))
+                    {
+                        if (attr.NodeValue == "")
+                        {
+                            attr.NodeValue = "NONE";
+                        }
+                        card.Bookmarkfield = attr.NodeValue;
+                    }
+                    if (attr.XML.Contains("color")) { colorstring = attr.NodeValue; }
+                }
+                string wordcount = "0";
+                string pgcount = "0";
+
+                string[] i = colorstring.Split(',');
+                System.Windows.Media.Color CardColor = System.Windows.Media.Color.FromRgb(250, 250, 160);
+                try
+                {
+                    CardColor = Color.FromRgb(byte.Parse(i[0]), byte.Parse(i[1]), byte.Parse(i[2]));
+
+                }
+                catch
+                {
+
+                }
+
+                ListCardControls.Add(card);
+
+
+            }
+
+        }
+        #endregion
+
+
     }
 }

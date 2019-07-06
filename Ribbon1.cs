@@ -16,7 +16,7 @@ namespace WordCards_WPF
 
         private void WPFUsrCtrl(object sender, RibbonControlEventArgs e)
         {
-            MessageBox.Show("clik");
+            
             Globals.ThisAddIn.InitializeCards();
         }
     }
