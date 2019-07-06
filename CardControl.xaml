@@ -13,6 +13,14 @@
                 <Canvas.Effect>
                     <DropShadowEffect Opacity="0.2"/>
                 </Canvas.Effect>
+                <Canvas.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Test" Click="MenuItem_Click" />
+                        <MenuItem Header="Menu item 2" />
+                        <Separator />
+                        <MenuItem Header="Menu item 3" />
+                    </ContextMenu>
+                </Canvas.ContextMenu>
                 <Grid x:Name="CardGrid" Height="{Binding ActualHeight, RelativeSource={RelativeSource FindAncestor, AncestorType=Canvas}}" Width="{Binding ActualWidth, Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType=Canvas}}">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="2*"/>
@@ -29,7 +37,8 @@
                         
                     </Grid.RowDefinitions>
                 
-                <TextBox x:Name="Textxaml" Text="Label"  
+                <TextBox x:Name="Textxaml" 
+                         Text="{Binding Path=Textfield , UpdateSourceTrigger=PropertyChanged}"  
                          Grid.Column="0" Grid.ColumnSpan="3" 
                          Grid.Row="1" Grid.RowSpan="2" 
                          BorderBrush="#4C000000" BorderThickness="1" Background="#00000000" 
@@ -39,7 +48,9 @@
                         <Label x:Name="BookmarkLabel" Content="Bookmark: "    Background="#00000000"  />
                     </Viewbox>
                     <Viewbox Grid.Column="1"  Grid.Row="0" HorizontalAlignment="Left">
-                        <Label x:Name="BookmarkNamexaml" Content="NONE"   Background="#00000000" Margin="-7,0,0,0" />
+                        <Label x:Name="BookmarkNamexaml" 
+                               Content="{Binding Path=Bookmarkfield}"   
+                               Background="#00000000" Margin="-7,0,0,0" />
                     </Viewbox>
                     <Viewbox Grid.Column="3"  Grid.Row="0" HorizontalAlignment="Right">
                         <Label x:Name="W" Content="w:"   Background="#00000000" Margin="0,0,-5,0"/>
@@ -54,7 +65,9 @@
                         <Label x:Name="Pagesxaml" Content="0"   Background="#00000000" />
                     </Viewbox>
                     <Viewbox Grid.Column="4"  Grid.Row="5" HorizontalAlignment="Right" VerticalAlignment="Bottom">
-                        <Label x:Name="Idxaml" Content="1"   Background="#00000000" Margin="0,0,0,-5" />
+                        <Label x:Name="Idxaml" 
+                               Content="{Binding Path=IDfield}"   
+                               Background="#00000000" Margin="0,0,0,-5" />
                     </Viewbox>
                 </Grid>
             </Canvas>

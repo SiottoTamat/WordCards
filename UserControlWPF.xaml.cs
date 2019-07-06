@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,8 +21,11 @@ namespace WordCards_WPF
     /// <summary>
     /// Interaction logic for UserControlWPF.xaml
     /// </summary>
-    public partial class UserControlWPF : UserControl
+    public partial class UserControlWPF : UserControl  
     {
+        
+
+
         public UserControlWPF()
         {
             InitializeComponent();

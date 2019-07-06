@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,6 +21,18 @@ namespace WordCards_WPF
     /// </summary>
     public partial class CardControl : UserControl
     {
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void OnPropertyRaised(string propertyname)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyname));
+            }
+        }
+
+
+
         public CardControl()
         {
             InitializeComponent();
@@ -35,7 +48,8 @@ namespace WordCards_WPF
             set
             {
                 textfield = value;
-                Textxaml.Text = textfield;
+                //Textxaml.Text = textfield;
+                OnPropertyRaised("Textfield");
             }
         }
         private string bookmarkfield;
@@ -48,7 +62,7 @@ namespace WordCards_WPF
             set
             {
                 bookmarkfield = value;
-                BookmarkNamexaml.Content = bookmarkfield;
+                //BookmarkNamexaml.Content = bookmarkfield;
             }
         }
         private string idfield;
@@ -56,12 +70,12 @@ namespace WordCards_WPF
         {
             get
             {
-                return textfield;
+                return idfield;
             }
             set
             {
                 idfield = value;
-                Idxaml.Content = idfield;
+                //Idxaml.Content = idfield;
             }
         }
 
@@ -81,5 +95,14 @@ namespace WordCards_WPF
             }
         }
 
+        public void TestMethod()
+        {
+            MessageBox.Show("Eureka!");
+        }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            TestMethod();
+        }
     }
 }
