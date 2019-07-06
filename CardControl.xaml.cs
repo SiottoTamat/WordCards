@@ -24,5 +24,62 @@ namespace WordCards_WPF
         {
             InitializeComponent();
         }
+
+        private string textfield;
+        public string Textfield
+        {
+            get
+            {
+                return textfield;
+            }
+            set
+            {
+                textfield = value;
+                Textxaml.Content = textfield;
+            }
+        }
+        private string bookmarkfield;
+        public string Bookmarkfield
+        {
+            get
+            {
+                return bookmarkfield;
+            }
+            set
+            {
+                bookmarkfield = value;
+                BookmarkNamexaml.Content = bookmarkfield;
+            }
+        }
+        private string idfield;
+        public string IDfield
+        {
+            get
+            {
+                return textfield;
+            }
+            set
+            {
+                idfield = value;
+                Idxaml.Content = idfield;
+            }
+        }
+
+        //System.Windows.Media.Color
+        private System.Windows.Media.Color colorfield = System.Windows.Media.Color.FromRgb(250, 250, 160);
+        public System.Windows.Media.Color Colorfield
+        {
+            get
+            {
+                return colorfield;
+            }
+            set
+            {
+                colorfield = value;
+                System.Windows.Media.Brush Canvasbrush = new SolidColorBrush(colorfield);
+                CardCanvas.Background = Canvasbrush;
+            }
+        }
+
     }
 }

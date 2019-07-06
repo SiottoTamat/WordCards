@@ -28,8 +28,14 @@ namespace WordCards_WPF
         private void AddCard_Click(object sender, RoutedEventArgs e)
         {
             CardControl card = new CardControl();
-            card.Text.Content = "Oddly satisfying?";
+            card.Textfield = "Test textfield";
+            card.Colorfield = System.Windows.Media.Color.FromRgb(250, 160, 160);
+            AddCardtoUI(card);
+        }
+        public void AddCardtoUI(CardControl card)
+        {
             Globals.ThisAddIn.stackpanelCards.Children.Add(card);
+
         }
     }
 }
