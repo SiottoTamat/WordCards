@@ -20,10 +20,6 @@ namespace WordCards_WPF
     /// </summary>
     public partial class UserControlWPF : UserControl
     {
-
-        #region VARIABLES
-        double cardheight = 75;
-        #endregion
         public UserControlWPF()
         {
             InitializeComponent();
@@ -35,31 +31,5 @@ namespace WordCards_WPF
             card.Text.Content = "Oddly satisfying?";
             Globals.ThisAddIn.stackpanelCards.Children.Add(card);
         }
-
-        public void CreateCard(CardObj cardobj)
-        {
-            CardControl newcard = new CardControl();
-            newcard.TextBlock.Text = cardobj.Text;
-            newcard.TooltipCard.Content = cardobj.Text;
-            newcard.BookmarkName.Content = cardobj.Bookmark;
-            newcard.Id.Content = cardobj.Id;
-            System.Windows.Media.Color newColor = System.Windows.Media.Color.FromArgb(cardobj.Color.A, cardobj.Color.R, cardobj.Color.G, cardobj.Color.B);
-            SolidColorBrush brush = new SolidColorBrush(newColor);
-            newcard.CardCanvas.Background = brush;
-            Globals.ThisAddIn.stackpanelCards.Children.Add(newcard);
-        }
-
-        public void UpdatePanelCardsfromXML(List<CardObj> ListofCards)
-        {
-            if (ListofCards != null)
-            {
-                foreach (CardObj card in ListofCards)
-                {
-                    CreateCard(card);
-                }
-            }
-        }
-
-
     }
 }

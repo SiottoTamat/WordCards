@@ -20,18 +20,9 @@ namespace WordCards_WPF
     /// </summary>
     public partial class CardControl : UserControl
     {
-        public string CardHeight { get; set; } = "75";
-
         public CardControl()
         {
             InitializeComponent();
-        }
-
-        
-
-        private void CardCanvas_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            //((Canvas)sender).Background = Brushes.Azure;
         }
     }
 }
