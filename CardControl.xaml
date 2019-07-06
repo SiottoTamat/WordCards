@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WordCards_WPF"
              mc:Ignorable="d" VerticalAlignment="Top">
-    <Grid MinHeight="110" MinWidth="200">
+    <Grid MinHeight="110" MinWidth="200" VerticalAlignment="Top" >
 
         <DockPanel x:Name="CardDockPanel" Height="110" LastChildFill="False" VerticalAlignment="Top">
 
@@ -18,40 +18,43 @@
                         <ColumnDefinition Width="2*"/>
                         <ColumnDefinition Width="2*"/>
                         <ColumnDefinition Width="2*"/>
-                        <ColumnDefinition Width=".5*"/>
-                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width=".7*"/>
+                        <ColumnDefinition Width=".8*"/>
                         
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="1*" />
-                        <RowDefinition Height="1*" />
-                        <RowDefinition Height="1*" />
-                        <RowDefinition Height="1*" />
-                        <RowDefinition Height="1*" />
-                        <RowDefinition Height="1*" />
+                        <RowDefinition Height=".7*" />
+                        <RowDefinition Height=".7*" />
+                        <RowDefinition Height="2*" />
+                        
                     </Grid.RowDefinitions>
                 
-                <Label x:Name="Textxaml" Content="Label"  Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1" Grid.RowSpan="5" BorderBrush="#4C000000" BorderThickness="1" Background="#00000000" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="2" />
+                <TextBox x:Name="Textxaml" Text="Label"  
+                         Grid.Column="0" Grid.ColumnSpan="3" 
+                         Grid.Row="1" Grid.RowSpan="2" 
+                         BorderBrush="#4C000000" BorderThickness="1" Background="#00000000" 
+                         HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="2" 
+                         TextWrapping="Wrap" AcceptsReturn="True" />
                     <Viewbox Grid.Column="0" Grid.ColumnSpan="1" Grid.Row="0" HorizontalAlignment="Right">
                         <Label x:Name="BookmarkLabel" Content="Bookmark: "    Background="#00000000"  />
                     </Viewbox>
                     <Viewbox Grid.Column="1"  Grid.Row="0" HorizontalAlignment="Left">
-                        <Label x:Name="BookmarkNamexaml" Content="NONE"   Background="#00000000" />
+                        <Label x:Name="BookmarkNamexaml" Content="NONE"   Background="#00000000" Margin="-7,0,0,0" />
+                    </Viewbox>
+                    <Viewbox Grid.Column="3"  Grid.Row="0" HorizontalAlignment="Right">
+                        <Label x:Name="W" Content="w:"   Background="#00000000" Margin="0,0,-5,0"/>
                     </Viewbox>
                     <Viewbox Grid.Column="3"  Grid.Row="1" HorizontalAlignment="Right">
-                        <Label x:Name="W" Content="w:"   Background="#00000000" />
+                        <Label x:Name="P" Content="p:"   Background="#00000000" Margin="0,0,-5,0" />
                     </Viewbox>
-                    <Viewbox Grid.Column="3"  Grid.Row="2" HorizontalAlignment="Right">
-                        <Label x:Name="P" Content="p:"   Background="#00000000" />
-                    </Viewbox>
-                    <Viewbox Grid.Column="4"  Grid.Row="1" HorizontalAlignment="Left">
+                    <Viewbox Grid.Column="4"  Grid.Row="0" HorizontalAlignment="Left">
                         <Label x:Name="Wordcountxaml" Content="0"   Background="#00000000" />
                     </Viewbox>
-                    <Viewbox Grid.Column="4"  Grid.Row="2" HorizontalAlignment="Left">
+                    <Viewbox Grid.Column="4"  Grid.Row="1" HorizontalAlignment="Left">
                         <Label x:Name="Pagesxaml" Content="0"   Background="#00000000" />
                     </Viewbox>
-                    <Viewbox Grid.Column="4"  Grid.Row="5" HorizontalAlignment="Center">
-                        <Label x:Name="Idxaml" Content="1"   Background="#00000000" />
+                    <Viewbox Grid.Column="4"  Grid.Row="5" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+                        <Label x:Name="Idxaml" Content="1"   Background="#00000000" Margin="0,0,0,-5" />
                     </Viewbox>
                 </Grid>
             </Canvas>

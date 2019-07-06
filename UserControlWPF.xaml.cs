@@ -103,6 +103,16 @@ namespace WordCards_WPF
             }
 
         }
+
+        private void Test_Click(object sender, RoutedEventArgs e)
+        {
+            string message = "";
+            foreach (CardControl control in ListCardControls)
+            {
+                message += control.Textfield + Environment.NewLine;
+            }
+            MessageBox.Show(message);
+        }
         #endregion
 
 

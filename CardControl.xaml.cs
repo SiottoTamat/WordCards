@@ -35,7 +35,7 @@ namespace WordCards_WPF
             set
             {
                 textfield = value;
-                Textxaml.Content = textfield;
+                Textxaml.Text = textfield;
             }
         }
         private string bookmarkfield;
