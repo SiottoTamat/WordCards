@@ -66,7 +66,7 @@ namespace WordCards_WPF
         }
 
         //System.Windows.Media.Color
-        private System.Windows.Media.Color colorfield = System.Windows.Media.Color.FromRgb(250, 250, 160);
+        private System.Windows.Media.Color colorfield = System.Windows.Media.Color.FromRgb(160, 250, 160);
         public System.Windows.Media.Color Colorfield
         {
             get

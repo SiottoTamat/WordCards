@@ -41,19 +41,28 @@ namespace WordCards_WPF
         }
         public void AddCardtoUI(CardControl card)
         {
-            Globals.ThisAddIn.stackpanelCards.Children.Add(card);
+            this.StackPanelxaml.Children.Add(card);
 
+        }
+
+        public void AddListCardControltoUI()
+        {
+            foreach(CardControl cardcontrol in ListCardControls)
+            {
+                AddCardtoUI(cardcontrol);
+            }
         }
 
         public void LoadXmltoListCardControls(Office.CustomXMLPart xmlPart)
         {
-            CardControl card = new CardControl();
+            
             ListCardControls.Clear();
 
             Office.CustomXMLNodes XMLnodes = xmlPart.SelectNodes("//node");
             string colorstring = "";
             foreach (Office.CustomXMLNode nodElem in XMLnodes)
             {
+                CardControl card = new CardControl();
                 card.Textfield = nodElem.Text;
 
 
@@ -78,12 +87,12 @@ namespace WordCards_WPF
                 System.Windows.Media.Color CardColor = System.Windows.Media.Color.FromRgb(250, 250, 160);
                 try
                 {
-                    CardColor = Color.FromRgb(byte.Parse(i[0]), byte.Parse(i[1]), byte.Parse(i[2]));
+                    card.Colorfield = Color.FromRgb(byte.Parse(i[0]), byte.Parse(i[1]), byte.Parse(i[2]));
 
                 }
                 catch
                 {
-
+                    card.Colorfield = CardColor;
                 }
 
                 ListCardControls.Add(card);

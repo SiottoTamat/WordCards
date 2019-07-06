@@ -48,10 +48,11 @@ namespace WordCards_WPF
             myCustomTaskPane.Visible = true;
             myCustomTaskPane.Width = 300;
 
-            stackpanelCards = controlWPF.StackPanel;
+            //stackpanelCards = controlWPF.StackPanel;
 
             Check_CustomXML();
             controlWPF.LoadXmltoListCardControls(myXML);
+            controlWPF.AddListCardControltoUI();
             //myCustomTaskPane.Control.SizeChanged += new EventHandler(CustomTasKPane_SizeChanged);
             //myCustomTaskPane.VisibleChanged += new EventHandler(CustomTaskPane_VisibleChanged);
         }
