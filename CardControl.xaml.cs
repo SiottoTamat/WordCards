@@ -112,9 +112,10 @@ namespace WordCards_WPF
         }
         private void Paste_Color_Click(object sender, RoutedEventArgs e)
         {
-            if (Globals.ThisAddIn.CopiedColor != null)
+            Color black = Color.FromRgb(0, 0, 0);
+            if (Globals.ThisAddIn.CopiedColor != black)
             {
-                this.Colorfield = Globals.ThisAddIn.CopiedColor;
+                Globals.ThisAddIn.userControlWPF.PasteCardColor(Globals.ThisAddIn.CopiedColor);
             }
         }
 

@@ -38,7 +38,8 @@ namespace WordCards_WPF
         internal void InitializeCards()
         {
 
-
+            Document vstoDoc = Globals.Factory.GetVstoObject(this.Application.ActiveDocument);
+            vstoDoc.BeforeSave += new Microsoft.Office.Tools.Word.SaveEventHandler(ThisDocument_BeforeSave);
 
             UserControlWPF controlWPF = new UserControlWPF();
             userControlWPF = controlWPF;
@@ -59,8 +60,16 @@ namespace WordCards_WPF
             //myCustomTaskPane.Control.SizeChanged += new EventHandler(CustomTasKPane_SizeChanged);
             //myCustomTaskPane.VisibleChanged += new EventHandler(CustomTaskPane_VisibleChanged);
         }
+
+        private void ThisDocument_BeforeSave(object sender, SaveEventArgs e)
+        {
+            if (userControlWPF != null)
+            {
+                userControlWPF.UpdateXMLFile();
+            }
+        }
         #region VARIABLES
-        public System.Windows.Media.Color CopiedColor;
+        public System.Windows.Media.Color CopiedColor = System.Windows.Media.Color.FromRgb(0, 0, 0);
         #endregion
 
 

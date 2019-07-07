@@ -84,7 +84,7 @@ namespace WordCards_WPF
                 }
 
                 ListCardControls.Add(card);
-
+                card.IDfield = FindIndexCard(card);
 
             }
 
@@ -134,18 +134,22 @@ namespace WordCards_WPF
         }
 
         #endregion
-
-
-
-        public void AddListCardControltoUI()
+        public string FindIndexCard(CardControl card)
         {
-            foreach(CardControl cardcontrol in ListCardControls)
+            int idx = 1;
+            foreach (CardControl carditem in ListCardControls)
             {
-                AddCardtoUI(cardcontrol);
+                if (card == carditem)
+                {
+                    break;
+                }
+                idx++;
             }
+            return idx.ToString();
         }
 
-      
+
+            
       
 
 
@@ -165,8 +169,20 @@ namespace WordCards_WPF
                 
             }
         }
+        public void PasteCardColor(Color newcolor)
+        {
+            if (ListViewxaml.SelectedItems.Count > 0)
+            {
+                foreach (CardControl item in ListViewxaml.SelectedItems)
+                {
+                    item.Colorfield = newcolor;
+                }
+            }
+        }
 
         #endregion
+        #region MENU BUTTONS
+
         private void Test_Click(object sender, RoutedEventArgs e)
         {
             string message = "";
@@ -179,30 +195,18 @@ namespace WordCards_WPF
         private void AddCard_Click(object sender, RoutedEventArgs e)
         {
             CardControl card = new CardControl();
-            card.Textfield = "Test textfield";
+            card.Textfield = "New Card";
             
             card.Colorfield = System.Windows.Media.Color.FromRgb(250, 160, 160);
             ListCardControls.Add(card);
-            int idx = 1;
-            foreach (CardControl carditem in ListCardControls)
-            {
-                if (card == carditem)
-                {
-                    break;
-                }
-                idx++;
-            }
-            card.IDfield = idx.ToString();
+            card.IDfield = FindIndexCard(card);
         }
         private void UpdateXML_Click(object sender, RoutedEventArgs e)
         {
             UpdateXMLFile();
         }
-        private void AddCardtoUI(CardControl card)
-        {
-            // this.StackPanelxaml.Children.Add(card);
 
-        }
+        #endregion
 
 
 
