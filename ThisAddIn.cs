@@ -28,6 +28,7 @@ namespace WordCards_WPF
         public int CheckifPanelOn = 0;
         private UserControl1 Usercontrol1;
         public StackPanel stackpanelCards;
+        public UserControlWPF userControlWPF;
 
         private Microsoft.Office.Tools.CustomTaskPane myCustomTaskPane;
         public Office.CustomXMLPart myXML;
@@ -37,8 +38,10 @@ namespace WordCards_WPF
         internal void InitializeCards()
         {
 
-            
+
+
             UserControlWPF controlWPF = new UserControlWPF();
+            userControlWPF = controlWPF;
             ElementHost _eh = new ElementHost { Child = controlWPF };
             Usercontrol1 = new UserControl1();
             Usercontrol1.Controls.Add(_eh);
@@ -56,7 +59,9 @@ namespace WordCards_WPF
             //myCustomTaskPane.Control.SizeChanged += new EventHandler(CustomTasKPane_SizeChanged);
             //myCustomTaskPane.VisibleChanged += new EventHandler(CustomTaskPane_VisibleChanged);
         }
-
+        #region VARIABLES
+        public System.Windows.Media.Color CopiedColor;
+        #endregion
 
 
         #region MY Methods

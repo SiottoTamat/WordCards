@@ -95,14 +95,49 @@ namespace WordCards_WPF
             }
         }
 
-        public void TestMethod()
+        public void TestMethod(string test ="Eureka!")
         {
-            MessageBox.Show("Eureka!");
+            MessageBox.Show(test);
         }
 
-        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        private void Choose_Color_Click(object sender, RoutedEventArgs e)
+        {
+            //TestMethod();
+            Globals.ThisAddIn.userControlWPF.ChangeCardColor();
+        }
+        private void Copy_Color_Click(object sender, RoutedEventArgs e)
+        {
+            Globals.ThisAddIn.CopiedColor = this.Colorfield;
+            //TestMethod(Globals.ThisAddIn.CopiedColor.ToString());
+        }
+        private void Paste_Color_Click(object sender, RoutedEventArgs e)
+        {
+            if (Globals.ThisAddIn.CopiedColor != null)
+            {
+                this.Colorfield = Globals.ThisAddIn.CopiedColor;
+            }
+        }
+
+        private void MoveUp_Click(object sender, RoutedEventArgs e)
         {
             TestMethod();
         }
+
+        private void MoveDown_Click(object sender, RoutedEventArgs e)
+        {
+            TestMethod();
+        }
+
+        private void LinkText_Click(object sender, RoutedEventArgs e)
+        {
+            TestMethod();
+        }
+
+        private void UnlinkText_Click(object sender, RoutedEventArgs e)
+        {
+            TestMethod();
+        }
+
+        
     }
 }

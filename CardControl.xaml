@@ -15,10 +15,16 @@
                 </Canvas.Effect>
                 <Canvas.ContextMenu>
                     <ContextMenu>
-                        <MenuItem Header="Test" Click="MenuItem_Click" />
-                        <MenuItem Header="Menu item 2" />
+                        <MenuItem Header="Change Card Color" Click="Choose_Color_Click" />
+                        <MenuItem Header="Copy Card Color" Click="Copy_Color_Click" />
+                        <MenuItem Header="Paste Card Color" Click="Paste_Color_Click" />
                         <Separator />
-                        <MenuItem Header="Menu item 3" />
+                        <MenuItem Header="Move Card Up" Click="MoveUp_Click"/>
+                        <MenuItem Header="Move Card Down" Click="MoveDown_Click"/>
+                        <Separator />
+                        <MenuItem Header="Link Text to Card" Click="LinkText_Click"/>
+                        <MenuItem Header="Unlink Text from Card" Click="UnlinkText_Click"/>
+                        <Separator />
                     </ContextMenu>
                 </Canvas.ContextMenu>
                 <Grid x:Name="CardGrid" Height="{Binding ActualHeight, RelativeSource={RelativeSource FindAncestor, AncestorType=Canvas}}" Width="{Binding ActualWidth, Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType=Canvas}}">

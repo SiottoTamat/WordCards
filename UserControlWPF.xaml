@@ -24,8 +24,9 @@
                         
 
                     </Grid.RowDefinitions>
-                    <Button x:Name="AddCard" Content="Add Card"  Margin="10,2"  Background="#FFDDDDDD" Click="AddCard_Click" RenderTransformOrigin="1.107,-0.107" HorizontalAlignment="Left" Width="60"/>
-                    <Button x:Name="Test" Content="Test" Grid.Row="1" HorizontalAlignment="Left" Margin="10,0,0,0" Width="60" Click="Test_Click"/>
+                    <Button x:Name="AddCard" Content="Add Card"  Margin="10,2"  Background="#FFDDDDDD" Click="AddCard_Click" RenderTransformOrigin="1.107,-0.107" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <Button x:Name="Test" Content="Test" Grid.Row="1" HorizontalAlignment="Center" Margin="10,0" Click="Test_Click" VerticalAlignment="Center" Width="54"/>
+                    <Button x:Name="UpdateXML" Content="Update XML" HorizontalAlignment="Center" Margin="10,0,0,0" Click="UpdateXML_Click" Grid.Column="1" VerticalAlignment="Center"/>
                 </Grid>
             </GroupBox>
             <ScrollViewer x:Name="StackPanelScrollViewer" VerticalScrollBarVisibility="Auto" Width="{Binding ActualWidth, Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:UserControlWPF}}}">
