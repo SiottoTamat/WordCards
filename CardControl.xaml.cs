@@ -62,7 +62,7 @@ namespace WordCards_WPF
             set
             {
                 bookmarkfield = value;
-                //BookmarkNamexaml.Content = bookmarkfield;
+                OnPropertyRaised("Bookmarkfield");
             }
         }
         private string idfield;
@@ -75,7 +75,7 @@ namespace WordCards_WPF
             set
             {
                 idfield = value;
-                //Idxaml.Content = idfield;
+                OnPropertyRaised("IDfield");
             }
         }
 
@@ -92,6 +92,7 @@ namespace WordCards_WPF
                 colorfield = value;
                 System.Windows.Media.Brush Canvasbrush = new SolidColorBrush(colorfield);
                 CardCanvas.Background = Canvasbrush;
+                OnPropertyRaised("Colorfield");
             }
         }
 
@@ -121,12 +122,12 @@ namespace WordCards_WPF
 
         private void MoveUp_Click(object sender, RoutedEventArgs e)
         {
-            TestMethod();
+            Globals.ThisAddIn.userControlWPF.MoveUpCard(sender, e);
         }
 
         private void MoveDown_Click(object sender, RoutedEventArgs e)
         {
-            TestMethod();
+            Globals.ThisAddIn.userControlWPF.MoveDownCard(sender, e);
         }
 
         private void LinkText_Click(object sender, RoutedEventArgs e)
@@ -139,6 +140,9 @@ namespace WordCards_WPF
             TestMethod();
         }
 
-        
+        private void DeleteCardText_Click(object sender, RoutedEventArgs e)
+        {
+            TestMethod();
+        }
     }
 }

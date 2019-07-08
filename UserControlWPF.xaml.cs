@@ -39,6 +39,15 @@ namespace WordCards_WPF
         #endregion
         #region MY METHODS
 
+        private void RefreshCardsIDs()
+        {
+            int idx = 1;
+            foreach (CardControl carditem in ListCardControls)
+            {
+                carditem.IDfield = idx.ToString();
+                idx++;
+            }
+        }
 
         #region XML-ListCardControls CONNECTION
         public void LoadXmltoListCardControls(Office.CustomXMLPart xmlPart)
@@ -149,8 +158,8 @@ namespace WordCards_WPF
         }
 
 
-            
-      
+
+        #region CARD RIGHT CLICK MENU METHODS
 
 
         public void ChangeCardColor()
@@ -180,6 +189,46 @@ namespace WordCards_WPF
             }
         }
 
+        public void MoveUpCard(object sender, RoutedEventArgs e)
+        {
+            CardControl item = null;
+            int index = -1;
+
+            if (ListViewxaml.SelectedItems.Count != 1) return;
+            item = (CardControl)ListViewxaml.SelectedItems[0];
+            index = ListCardControls.IndexOf(item);
+            if (index > 0)
+            {
+                ListCardControls.Move(index, index - 1);
+                //ListCardControls[index - 1].IDfield = (index-1).ToString();
+                //ListCardControls[index].IDfield = (index).ToString();
+                RefreshCardsIDs();
+                ListViewxaml.Items.Refresh();
+                
+            }
+            
+        }
+
+        public void MoveDownCard(object sender, RoutedEventArgs e)
+        {
+            CardControl item = null;
+            int index = -1;
+
+            if (ListViewxaml.SelectedItems.Count != 1) return;
+            item = (CardControl)ListViewxaml.SelectedItems[0];
+            index = ListCardControls.IndexOf(item);
+            if (index < ListCardControls.Count - 1)
+            {
+                ListCardControls.Move(index, index + 1);
+                RefreshCardsIDs();
+                ListViewxaml.Items.Refresh();
+            }
+            
+        }
+
+
+
+        #endregion
         #endregion
         #region MENU BUTTONS
 
@@ -206,8 +255,14 @@ namespace WordCards_WPF
             UpdateXMLFile();
         }
 
-        #endregion
+        private void Test2_Click(object sender, RoutedEventArgs e)
+        {
+            RefreshCardsIDs();
+        }
 
+
+
+        #endregion
 
 
     }

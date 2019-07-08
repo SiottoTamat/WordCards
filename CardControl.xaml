@@ -25,6 +25,8 @@
                         <MenuItem Header="Link Text to Card" Click="LinkText_Click"/>
                         <MenuItem Header="Unlink Text from Card" Click="UnlinkText_Click"/>
                         <Separator />
+                        <MenuItem Header="Delete Card" Click="DeleteCardText_Click"/>
+                        <!--<MenuItem Header="Unlink Text from Card" Click="UnlinkText_Click"/>-->
                     </ContextMenu>
                 </Canvas.ContextMenu>
                 <Grid x:Name="CardGrid" Height="{Binding ActualHeight, RelativeSource={RelativeSource FindAncestor, AncestorType=Canvas}}" Width="{Binding ActualWidth, Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType=Canvas}}">
