@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Office.Interop.Word;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -142,7 +143,9 @@ namespace WordCards_WPF
 
         }
 
-        
+
+
+
 
         #endregion
         public string FindIndexCard(CardControl card)
@@ -247,8 +250,84 @@ namespace WordCards_WPF
             
         }
 
+        public void LinkTextToCard(object sender, RoutedEventArgs e)
+        {
+            
+                 // select the range of text
+            Microsoft.Office.Interop.Word.Range range = Globals.ThisAddIn.Application.Selection.Range;
+
+            if (CheckRulesBookmark(range)) // controls that the paragraphs don't overimpose
+            {
+                MessageBox.Show("You can't assing overlapping paragraphs to cards.");
+                ((CardControl)sender).Bookmarkfield = "None";
+            }
+            Microsoft.Office.Interop.Word.Paragraphs paragraphs = Globals.ThisAddIn.Application.Selection.Paragraphs;
 
 
+            // this checks that is paragraphs and not middle phrases
+            if (paragraphs.Count > 0 && ((range.Start == paragraphs.First.Range.Start) && (range.End == paragraphs.Last.Range.End)))
+            {
+
+                // add a bookmark with a specific name calling another method the name will go into the label of the control
+                string nameBookMrk = AddBookmark(range);
+                ((CardControl)sender).Bookmarkfield = nameBookMrk;
+            }
+            else
+            {
+                MessageBox.Show("You need to select one or more paragraphs to add to the Card");
+                ((CardControl)sender).Bookmarkfield = "None";
+            }
+        }
+
+        public string AddBookmark(Microsoft.Office.Interop.Word.Range range)
+        {
+            string name = "CARD0";
+            if (Globals.ThisAddIn.Application.ActiveDocument.Bookmarks.Count > 0)
+            {
+                int maxnum = 0;
+                foreach (Microsoft.Office.Interop.Word.Bookmark bookmark in Globals.ThisAddIn.Application.ActiveDocument.Bookmarks) // BookmarkCollection)
+                {
+                    string nameB = bookmark.Name;
+                    int num = int.Parse(nameB.Replace("CARD", ""));
+                    if (num > maxnum) { maxnum = num; }
+                }
+                name = "CARD" + ((maxnum + 1).ToString());
+            }
+
+            try
+            {
+                Microsoft.Office.Interop.Word.Bookmark newbookmark = Globals.ThisAddIn.Application.ActiveDocument.Bookmarks.Add(name, range);
+                return name;
+            }
+            catch
+            {
+                return "None";
+            }
+        }
+
+        public bool CheckRulesBookmark(Microsoft.Office.Interop.Word.Range range)// controls that the paragraphs don't overimpose FALSE= correct
+        {
+            int start = range.Start;
+            int end = range.End;
+            Microsoft.Office.Interop.Word.Paragraphs paragraphs = range.Paragraphs;
+            foreach (Microsoft.Office.Interop.Word.Paragraph paragraph in paragraphs)
+            {
+                foreach (Microsoft.Office.Interop.Word.Bookmark bookmark in Globals.ThisAddIn.Application.ActiveDocument.Bookmarks)
+                {
+                    foreach (Microsoft.Office.Interop.Word.Paragraph bparagraph in bookmark.Range.Paragraphs)
+                    {
+                        string debug1 = bparagraph.ID;
+                        string debug2 = paragraph.ID;
+                        if (bparagraph.ParaID == paragraph.ParaID)
+                        {
+                            return true;
+                        }
+                    }
+                }
+            }
+
+            return false;
+        }
         #endregion
         #endregion
         #region MENU BUTTONS

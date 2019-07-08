@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Word = Microsoft.Office.Interop.Word;
 
 namespace WordCards_WPF
 {
@@ -55,6 +56,7 @@ namespace WordCards_WPF
         private string bookmarkfield;
         public string Bookmarkfield
         {
+
             get
             {
                 return bookmarkfield;
@@ -63,9 +65,15 @@ namespace WordCards_WPF
             {
                 bookmarkfield = value;
                 OnPropertyRaised("Bookmarkfield");
+
+             
+
+
             }
+        
         }
-        private string idfield;
+
+    private string idfield;
         public string IDfield
         {
             get
@@ -101,6 +109,26 @@ namespace WordCards_WPF
             MessageBox.Show(test);
         }
 
+
+
+
+
+        #region METHODS
+
+        public void SetStats()
+        {
+            try
+            {
+                Wordcountxaml.Content = Globals.ThisAddIn.Application.ActiveDocument.Bookmarks[bookmarkfield].Range.ComputeStatistics(Word.WdStatistic.wdStatisticWords).ToString();
+                int rangestrt = Globals.ThisAddIn.Application.ActiveDocument.Bookmarks[bookmarkfield].Range.Start;
+                int rangeend = Globals.ThisAddIn.Application.ActiveDocument.Bookmarks[bookmarkfield].Range.End;
+                int range = Globals.ThisAddIn.Application.ActiveDocument.Range(rangestrt, rangestrt).get_Information(Word.WdInformation.wdActiveEndPageNumber);
+                int range2 = Globals.ThisAddIn.Application.ActiveDocument.Range(rangeend, rangeend).get_Information(Word.WdInformation.wdActiveEndPageNumber);
+                Pagesxaml.Content = range.ToString() + "-" + range2.ToString();
+            }
+            catch { }
+        }
+
         private void Choose_Color_Click(object sender, RoutedEventArgs e)
         {
             //TestMethod();
@@ -132,7 +160,7 @@ namespace WordCards_WPF
 
         private void LinkText_Click(object sender, RoutedEventArgs e)
         {
-            TestMethod();
+            Globals.ThisAddIn.userControlWPF.LinkTextToCard(sender, e);
         }
 
         private void UnlinkText_Click(object sender, RoutedEventArgs e)
@@ -144,5 +172,6 @@ namespace WordCards_WPF
         {
             Globals.ThisAddIn.userControlWPF.DeleteCard();
         }
+        #endregion
     }
 }
