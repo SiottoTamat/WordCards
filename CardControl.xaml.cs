@@ -20,7 +20,7 @@ namespace WordCards_WPF
     /// <summary>
     /// Interaction logic for CardControl.xaml
     /// </summary>
-    public partial class CardControl : UserControl
+    public partial class CardControl : UserControl , INotifyPropertyChanged
     {
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -59,7 +59,14 @@ namespace WordCards_WPF
 
             get
             {
-                return bookmarkfield;
+                if (bookmarkfield == null)
+                {
+                    return "None";
+                }
+                else
+                {
+                    return bookmarkfield;
+                }
             }
             set
             {
@@ -78,7 +85,7 @@ namespace WordCards_WPF
         {
             get
             {
-                return idfield;
+                return (Globals.ThisAddIn.userControlWPF.ListCardControls.IndexOf(this) + 1).ToString(); 
             }
             set
             {
@@ -122,8 +129,8 @@ namespace WordCards_WPF
                 Wordcountxaml.Content = Globals.ThisAddIn.Application.ActiveDocument.Bookmarks[bookmarkfield].Range.ComputeStatistics(Word.WdStatistic.wdStatisticWords).ToString();
                 int rangestrt = Globals.ThisAddIn.Application.ActiveDocument.Bookmarks[bookmarkfield].Range.Start;
                 int rangeend = Globals.ThisAddIn.Application.ActiveDocument.Bookmarks[bookmarkfield].Range.End;
-                int range = Globals.ThisAddIn.Application.ActiveDocument.Range(rangestrt, rangestrt).get_Information(Word.WdInformation.wdActiveEndPageNumber);
-                int range2 = Globals.ThisAddIn.Application.ActiveDocument.Range(rangeend, rangeend).get_Information(Word.WdInformation.wdActiveEndPageNumber);
+                int range = (int)Globals.ThisAddIn.Application.ActiveDocument.Range(rangestrt, rangestrt).get_Information(Microsoft.Office.Interop.Word.WdInformation.wdActiveEndPageNumber); ;
+                int range2 = (int)Globals.ThisAddIn.Application.ActiveDocument.Range(rangeend, rangeend).get_Information(Microsoft.Office.Interop.Word.WdInformation.wdActiveEndPageNumber); ;
                 Pagesxaml.Content = range.ToString() + "-" + range2.ToString();
             }
             catch { }
@@ -161,6 +168,8 @@ namespace WordCards_WPF
         private void LinkText_Click(object sender, RoutedEventArgs e)
         {
             Globals.ThisAddIn.userControlWPF.LinkTextToCard(sender, e);
+            
+            
         }
 
         private void UnlinkText_Click(object sender, RoutedEventArgs e)

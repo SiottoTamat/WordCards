@@ -35,7 +35,7 @@ namespace WordCards_WPF
             this.DialogResult = true;
             
         }
-        public Color anweredColor
+        public Color AnweredColor
         {
             get { return (Color)ColorPicker.SelectedColor; }
         }

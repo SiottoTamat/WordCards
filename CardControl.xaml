@@ -6,10 +6,15 @@
              xmlns:local="clr-namespace:WordCards_WPF"
              mc:Ignorable="d" VerticalAlignment="Top">
     <Grid MinHeight="110" MinWidth="200" VerticalAlignment="Top" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="43*"/>
+            <RowDefinition Height="67*"/>
+        </Grid.RowDefinitions>
 
-        <DockPanel x:Name="CardDockPanel" Height="110" LastChildFill="False" VerticalAlignment="Top">
+        <DockPanel x:Name="CardDockPanel" Height="110" LastChildFill="False" VerticalAlignment="Top" Grid.RowSpan="2">
+            
 
-            <Canvas x:Name="CardCanvas" Height="0" DockPanel.Dock="Top" Margin="10,5,10,0" MinHeight="100" Background="#FFFFEF4E" >
+            <Canvas x:Name="CardCanvas" DockPanel.Dock="Top" Margin="10,5,10,0" MinHeight="100" Background="#FFFFEF4E" Height="102" >
                 <Canvas.Effect>
                     <DropShadowEffect Opacity="0.2"/>
                 </Canvas.Effect>
@@ -29,6 +34,7 @@
                         <!--<MenuItem Header="Unlink Text from Card" Click="UnlinkText_Click"/>-->
                     </ContextMenu>
                 </Canvas.ContextMenu>
+                
                 <Grid x:Name="CardGrid" Height="{Binding ActualHeight, RelativeSource={RelativeSource FindAncestor, AncestorType=Canvas}}" Width="{Binding ActualWidth, Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType=Canvas}}">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="2*"/>
@@ -36,16 +42,17 @@
                         <ColumnDefinition Width="2*"/>
                         <ColumnDefinition Width=".7*"/>
                         <ColumnDefinition Width=".8*"/>
-                        
+
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height=".7*" />
                         <RowDefinition Height=".7*" />
                         <RowDefinition Height="2*" />
-                        
+
                     </Grid.RowDefinitions>
-                
-                <TextBox x:Name="Textxaml" 
+                    
+
+                    <TextBox x:Name="Textxaml" 
                          Text="{Binding Path=Textfield , UpdateSourceTrigger=PropertyChanged}"  
                          Grid.Column="0" Grid.ColumnSpan="3" 
                          Grid.Row="1" Grid.RowSpan="2" 
@@ -81,6 +88,7 @@
             </Canvas>
 
         </DockPanel>
+        
 
     </Grid>
 </UserControl>
