@@ -142,7 +142,7 @@ namespace WordCards_WPF
 
         private void DeleteCardText_Click(object sender, RoutedEventArgs e)
         {
-            TestMethod();
+            Globals.ThisAddIn.userControlWPF.DeleteCard();
         }
     }
 }

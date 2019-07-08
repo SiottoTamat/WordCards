@@ -142,6 +142,8 @@ namespace WordCards_WPF
 
         }
 
+        
+
         #endregion
         public string FindIndexCard(CardControl card)
         {
@@ -186,6 +188,25 @@ namespace WordCards_WPF
                 {
                     item.Colorfield = newcolor;
                 }
+            }
+        }
+
+        internal void DeleteCard()
+        {
+            if (ListViewxaml.SelectedItems.Count > 0)
+            {
+                string message = "Are you sure that you want to delete this card?";
+                if (ListViewxaml.SelectedItems.Count > 1)
+                {
+                    message = "Are you sure that you want to delete these cards?";
+                }
+                if(MessageBox.Show(message,"Delete Cards",MessageBoxButton.YesNo, MessageBoxImage.Warning)==MessageBoxResult.Yes)
+                    while (ListViewxaml.SelectedItems.Count>0)
+                    {
+                        ListCardControls.Remove((CardControl)ListViewxaml.SelectedItem);
+                        RefreshCardsIDs();
+                        ListViewxaml.Items.Refresh();
+                    }
             }
         }
 
