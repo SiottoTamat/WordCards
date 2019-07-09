@@ -56,7 +56,11 @@ namespace WordCards_WPF
 
             Check_CustomXML();
             controlWPF.LoadXmltoListCardControls(myXML);
-           // controlWPF.AddListCardControltoUI();
+            System.Windows.Threading.DispatcherTimer aTimer = new System.Windows.Threading.DispatcherTimer();
+            aTimer.Tick += new EventHandler(controlWPF.Check_Consistency_With_Text);
+            aTimer.Interval = new TimeSpan(0,0,1);
+            aTimer.Start();
+            // controlWPF.AddListCardControltoUI();
             //myCustomTaskPane.Control.SizeChanged += new EventHandler(CustomTasKPane_SizeChanged);
             //myCustomTaskPane.VisibleChanged += new EventHandler(CustomTaskPane_VisibleChanged);
         }
