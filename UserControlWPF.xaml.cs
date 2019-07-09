@@ -236,8 +236,9 @@ namespace WordCards_WPF
             {
                 MoveText(ListCardControls[index - 1], ListCardControls[index]);
                 ListCardControls.Move(index, index - 1);
-                ListCardControls[index].IDfield = "change";
-                
+                ListCardControls[index].IDfield = "change";// refresh the ids
+                ListCardControls[index-1].IDfield = "change";
+
                 //ListCardControls[index - 1].IDfield = (index-1).ToString();
                 //ListCardControls[index].IDfield = (index).ToString();
                 //RefreshCardsIDs();
@@ -260,7 +261,8 @@ namespace WordCards_WPF
             {
                 MoveText(ListCardControls[index], ListCardControls[index + 1]);
                 ListCardControls.Move(index, index + 1);
-                ListCardControls[index+1].IDfield = "change";
+                ListCardControls[index+1].IDfield = "change";// refresh the ids
+                ListCardControls[index].IDfield = "change";
 
 
                 //ListCardControls[index + 1].IDfield = (index + 1).ToString();
@@ -278,8 +280,9 @@ namespace WordCards_WPF
 
             if (int.Parse(BOTTOMCARD.IDfield) != 1)// if it is not the first card
             {
+                string nobookmark = "None";
             
-                    if ((TOPCARD.Bookmarkfield != "None") && (BOTTOMCARD.Bookmarkfield != "None")) // only if both are linked to a bookmark
+                    if ((TOPCARD.Bookmarkfield.ToUpper() != nobookmark.ToUpper()) && (BOTTOMCARD.Bookmarkfield.ToUpper() != nobookmark.ToUpper())) // only if both are linked to a bookmark - to upper to maintain compatibility with old format
                     {
 
                         
@@ -468,9 +471,12 @@ namespace WordCards_WPF
         {
             NewCard();
         }
-        private void UpdateXML_Click(object sender, RoutedEventArgs e)
+        private void UpdateStats_Click(object sender, RoutedEventArgs e)
         {
-            UpdateXMLFile();
+            foreach (CardControl card in ListCardControls)
+            {
+                card.SetStats();
+            } 
         }
 
         private void Test2_Click(object sender, RoutedEventArgs e)
@@ -527,6 +533,7 @@ namespace WordCards_WPF
                        
                         card.Bookmarkfield = "None";
                     }
+                    //card.SetStats();
                 } 
             }
             Globals.ThisAddIn.userControlWPF.Siotto.Foreground = Brushes.Black;

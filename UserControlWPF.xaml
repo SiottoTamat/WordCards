@@ -25,8 +25,8 @@
 
                     </Grid.RowDefinitions>
                     <Button x:Name="AddCard" Content="Add Card"  Margin="10,2"  Background="#FFDDDDDD" Click="AddCard_Click" RenderTransformOrigin="1.107,-0.107" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    <Button x:Name="Test" Content="Test" Grid.Row="1" HorizontalAlignment="Center" Margin="10,0" Click="Test_Click" VerticalAlignment="Center" Width="54"/>
-                    <Button x:Name="UpdateXML" Content="Update XML" HorizontalAlignment="Center" Margin="10,0,0,0" Click="UpdateXML_Click" Grid.Column="1" VerticalAlignment="Center"/>
+                    <Button x:Name="Test" Content="Test" HorizontalAlignment="Center" Margin="10,0" Click="Test_Click" VerticalAlignment="Center" Width="54" Grid.Column="1"/>
+                    <Button x:Name="UpdateStats" Content="Update Card Stats" HorizontalAlignment="Center" Margin="10,0,0,0" Click="UpdateStats_Click" VerticalAlignment="Center" Grid.Row="1"/>
                     <Button x:Name="Test2" Content="Test2" Grid.Column="1" HorizontalAlignment="Center" Margin="0,1,0,0" Grid.Row="1" VerticalAlignment="Center" Width="75" Click="Test2_Click"/>
                     <Label x:Name="Siotto" Content="©Siotto" Grid.Row="2" Grid.Column="3" VerticalAlignment="Bottom" HorizontalAlignment="Right"></Label>
                 </Grid>
