@@ -174,7 +174,7 @@ namespace WordCards_WPF
 
         private void UnlinkText_Click(object sender, RoutedEventArgs e)
         {
-            TestMethod();
+            Globals.ThisAddIn.userControlWPF.UnlinkTextFromCard(sender, e);
         }
 
         private void DeleteCardText_Click(object sender, RoutedEventArgs e)
@@ -182,5 +182,25 @@ namespace WordCards_WPF
             Globals.ThisAddIn.userControlWPF.DeleteCard();
         }
         #endregion
+
+        private void Add_Card_Above_Click(object sender, RoutedEventArgs e)
+        {
+            
+            int index = Globals.ThisAddIn.userControlWPF.ListCardControls.IndexOf(this);
+            Globals.ThisAddIn.userControlWPF.NewCard(index);
+            
+        }
+
+        private void Add_Card_Below_Click(object sender, RoutedEventArgs e)
+        {
+            
+            int index = Globals.ThisAddIn.userControlWPF.ListCardControls.IndexOf(this)+1;
+            Globals.ThisAddIn.userControlWPF.NewCard(index);
+        }
+
+        private void Add_Card_Bottom_Click(object sender, RoutedEventArgs e)
+        {
+            Globals.ThisAddIn.userControlWPF.NewCard();
+        }
     }
 }

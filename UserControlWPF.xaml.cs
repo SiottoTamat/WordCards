@@ -162,6 +162,8 @@ namespace WordCards_WPF
             return idx.ToString();
         }
 
+       
+
 
 
         #region CARD RIGHT CLICK MENU METHODS
@@ -169,7 +171,7 @@ namespace WordCards_WPF
 
         public void ChangeCardColor()
         {
-            
+            Globals.ThisAddIn.Application.UndoRecord.StartCustomRecord("Change Color");
             ColorWindow Colordialog = new ColorWindow();
             if(Colordialog.ShowDialog() == true)
             {
@@ -182,9 +184,11 @@ namespace WordCards_WPF
                 }
                 
             }
+            Globals.ThisAddIn.Application.UndoRecord.EndCustomRecord();
         }
         public void PasteCardColor(Color newcolor)
         {
+            Globals.ThisAddIn.Application.UndoRecord.StartCustomRecord("Paste Color");
             if (ListViewxaml.SelectedItems.Count > 0)
             {
                 foreach (CardControl item in ListViewxaml.SelectedItems)
@@ -192,10 +196,12 @@ namespace WordCards_WPF
                     item.Colorfield = newcolor;
                 }
             }
+            Globals.ThisAddIn.Application.UndoRecord.EndCustomRecord();
         }
 
         internal void DeleteCard()
         {
+            Globals.ThisAddIn.Application.UndoRecord.StartCustomRecord("Del Card");
             if (ListViewxaml.SelectedItems.Count > 0)
             {
                 string message = "Are you sure that you want to delete this card?";
@@ -211,6 +217,7 @@ namespace WordCards_WPF
                         //ListViewxaml.Items.Refresh();
                     }
             }
+            Globals.ThisAddIn.Application.UndoRecord.EndCustomRecord();
         }
 
         public void MoveUpCard(object sender, RoutedEventArgs e)
@@ -306,6 +313,7 @@ namespace WordCards_WPF
 
         public void LinkTextToCard(object sender, RoutedEventArgs e)
         {
+            Globals.ThisAddIn.Application.UndoRecord.StartCustomRecord("Link Card");
             if (ListViewxaml.SelectedItems.Count == 1)
             {
                 
@@ -338,6 +346,33 @@ namespace WordCards_WPF
                 ((CardControl)ListViewxaml.SelectedItem).SetStats();
 
 
+            }
+            Globals.ThisAddIn.Application.UndoRecord.EndCustomRecord();
+        }
+        internal void UnlinkTextFromCard(object sender, RoutedEventArgs e)
+        {
+            if (ListViewxaml.SelectedItems.Count > 0)
+            {
+                string message = "Are you sure that you want to Unlink this card from the text?";
+                if (ListViewxaml.SelectedItems.Count > 1)
+                {
+                    message = "Are you sure that you want to Unlink these cards from the text?";
+                }
+                Globals.ThisAddIn.Application.UndoRecord.StartCustomRecord("Unlink Card");
+
+                if (MessageBox.Show(message, "Unlink Cards", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+                    foreach (CardControl item in ListViewxaml.SelectedItems)
+                    {
+                        string bkmrk = item.Bookmarkfield;
+                        if(bkmrk != "None" || bkmrk != "NONE")
+                        {
+                            Globals.ThisAddIn.Application.ActiveDocument.Bookmarks[bkmrk].Delete();
+                            item.Bookmarkfield = "None";
+                        }
+                        
+                        
+                    }
+                Globals.ThisAddIn.Application.UndoRecord.EndCustomRecord();
             }
         }
 
@@ -390,9 +425,32 @@ namespace WordCards_WPF
 
             return false;
         }
+        
+        public void NewCard(int index = -1)
+        {
+            Globals.ThisAddIn.Application.UndoRecord.StartCustomRecord("New Card");
+            CardControl card = new CardControl();
+            card.Textfield = "New Card";
+            card.Colorfield = System.Windows.Media.Color.FromRgb(250, 250, 210);
+            if (index == -1 || index> ListCardControls.Count) // add card at the bottom
+            {
+                ListCardControls.Add(card);
+            }
+            else
+            {
+                
+                if (index< ListCardControls.Count)
+                {
+                    ListCardControls.Insert(index, card);
+                    Globals.ThisAddIn.userControlWPF.ListViewxaml.Items.Refresh();
+                }
+            }
+            
+            card.IDfield = FindIndexCard(card);
+            Globals.ThisAddIn.Application.UndoRecord.EndCustomRecord();
+        }
         #endregion
-        #endregion
-        #region MENU BUTTONS
+        #region TOP BUTTONS
 
         private void Test_Click(object sender, RoutedEventArgs e)
         {
@@ -405,12 +463,7 @@ namespace WordCards_WPF
         }
         private void AddCard_Click(object sender, RoutedEventArgs e)
         {
-            CardControl card = new CardControl();
-            card.Textfield = "New Card";
-            
-            card.Colorfield = System.Windows.Media.Color.FromRgb(250, 160, 160);
-            ListCardControls.Add(card);
-            card.IDfield = FindIndexCard(card);
+            NewCard();
         }
         private void UpdateXML_Click(object sender, RoutedEventArgs e)
         {
@@ -424,6 +477,7 @@ namespace WordCards_WPF
 
 
 
+        #endregion
         #endregion
 
 

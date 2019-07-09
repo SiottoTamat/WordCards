@@ -11,15 +11,17 @@
             <RowDefinition Height="67*"/>
         </Grid.RowDefinitions>
 
-        <DockPanel x:Name="CardDockPanel" Height="110" LastChildFill="False" VerticalAlignment="Top" Grid.RowSpan="2">
-            
-
-            <Canvas x:Name="CardCanvas" DockPanel.Dock="Top" Margin="10,5,10,0" MinHeight="100" Background="#FFFFEF4E" Height="102" >
+        <DockPanel x:Name="CardDockPanel" LastChildFill="False" Grid.ColumnSpan="2" Grid.RowSpan="2" Margin="0">
+                <Canvas x:Name="CardCanvas" DockPanel.Dock="Top" Margin="10,5" MinHeight="80" Background="#FFFFEF4E" Height="100" >
                 <Canvas.Effect>
                     <DropShadowEffect Opacity="0.2"/>
                 </Canvas.Effect>
                 <Canvas.ContextMenu>
                     <ContextMenu>
+                        <MenuItem Header="Add Card Above This One" Click="Add_Card_Above_Click" />
+                        <MenuItem Header="Add Card Below This One" Click="Add_Card_Below_Click" />
+                        <MenuItem Header="Add Card at the Bottom" Click="Add_Card_Bottom_Click" />
+                        <Separator />
                         <MenuItem Header="Change Card Color" Click="Choose_Color_Click" />
                         <MenuItem Header="Copy Card Color" Click="Copy_Color_Click" />
                         <MenuItem Header="Paste Card Color" Click="Paste_Color_Click" />
@@ -86,7 +88,7 @@
                     </Viewbox>
                 </Grid>
             </Canvas>
-
+            
         </DockPanel>
         
 
