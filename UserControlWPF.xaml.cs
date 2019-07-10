@@ -489,21 +489,10 @@ namespace WordCards_WPF
 
         private void Test2_Click(object sender, RoutedEventArgs e)
         {
-           //Check_Consistency_With_Text();
+            Globals.ThisAddIn.Application.ActiveWindow.View.ShowBookmarks = !Globals.ThisAddIn.Application.ActiveWindow.View.ShowBookmarks;
         }
 
-        /*  private void ListViewxaml_ItemSelectionChanged(Object sender, ListViewItemSelectionChangedEventArgs e)
-          {
-              string bookmark = ListCardControls[e.ItemIndex].Bookmarkfield;
-              if (!(new[] { "None", "NONE" }.Contains(bookmark)))
-              {
-                  Word.Range range = Globals.ThisAddIn.Application.ActiveDocument.Bookmarks[bookmark].Range;
-                  range.Select();
-              }
-
-
-          }
-          */
+      
         public void FocusOnText(CardControl card)
         {
             string bookmark = card.Bookmarkfield;
@@ -628,6 +617,16 @@ namespace WordCards_WPF
             expwin.Show();
             
 
+        }
+
+        private void BookmarkCheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            Globals.ThisAddIn.Application.ActiveWindow.View.ShowBookmarks = true;
+        }
+
+        private void BookmarkCheckBox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            Globals.ThisAddIn.Application.ActiveWindow.View.ShowBookmarks = false;
         }
     }
 }
