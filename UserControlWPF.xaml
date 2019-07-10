@@ -15,24 +15,38 @@
                         <ColumnDefinition Width="1*"/>
                         <ColumnDefinition Width="1*"/>
                         <ColumnDefinition Width="1*"/>
-                        
+
 
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="1*" />
                         <RowDefinition Height="1*" />
-                        
+
 
                     </Grid.RowDefinitions>
-                    <Button x:Name="AddCard" Content="Add Card"  Margin="10,2"  Background="#FFDDDDDD" Click="AddCard_Click" RenderTransformOrigin="1.107,-0.107" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    <Button x:Name="Test" Content="Test" HorizontalAlignment="Center" Margin="10,0" Click="Test_Click" VerticalAlignment="Center" Width="54" Grid.Column="1"/>
-                    <Button x:Name="UpdateStats" Content="Update Card Stats" HorizontalAlignment="Center" Margin="10,0,0,0" Click="UpdateStats_Click" VerticalAlignment="Center" Grid.Row="1"/>
-                    <Button x:Name="Test2" Content="Test2" Grid.Column="1" HorizontalAlignment="Center" Margin="0,1,0,0" Grid.Row="1" VerticalAlignment="Center" Width="75" Click="Test2_Click"/>
-                    <Label x:Name="Siotto" Content="©Siotto" Grid.Row="2" Grid.Column="3" VerticalAlignment="Bottom" HorizontalAlignment="Right"></Label>
+                    <Button x:Name="AddCard" Content="Add Card"  Margin="5"  Background="#FFDDDDDD" Click="AddCard_Click" RenderTransformOrigin="1.107,-0.107"/>
+                    <Button x:Name="Test" Content="Test" Margin="5" Click="Test_Click" Grid.Column="2"/>
+                    <Button x:Name="UpdateStats" Content="Update Card Stats" Margin="5" Click="UpdateStats_Click" Grid.Row="1"/>
+                    <Button x:Name="Test2" Content="Test2" Grid.Column="2" Margin="5" Grid.Row="1" Click="Test2_Click"/>
+                    <Button x:Name="Import_Cards" Grid.Column="1" Content="Import Cards" Margin="5" Click="Import_Cards_Click"/>
+                    <Button x:Name="Export_Cards" Grid.Column="1" Grid.Row="1" Content="Export Cards" Margin="5" Click="Export_Cards_Click"/>
+                    <Label x:Name="Siotto" Content="©Siotto" Grid.Column="2" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,-21,0,34"/>
                 </Grid>
             </GroupBox>
             <ScrollViewer x:Name="StackPanelScrollViewer" VerticalScrollBarVisibility="Auto" Width="{Binding ActualWidth, Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:UserControlWPF}}}">
-                <ListView x:Name="ListViewxaml" Width="{Binding Path=ViewportWidth, Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType=ScrollViewer}}">
+                <ListView x:Name="ListViewxaml" Width="{Binding Path=ViewportWidth, Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType=ScrollViewer}}" BorderBrush="#FF9E9E9E">
+                    <ListView.Background>
+                        <ImageBrush x:Name="corkbackground" ImageSource="Img/cork.jpg" TileMode="Tile" ViewportUnits="Absolute" Viewport="0,0,400,400">
+                            <ImageBrush.Transform>
+                                <TransformGroup>
+                                    <ScaleTransform ScaleX="0.5" ScaleY="0.5"/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </ImageBrush.Transform>
+                        </ImageBrush>
+                    </ListView.Background>
                     <ListView.ItemContainerStyle>
                         <Style TargetType="ListViewItem">
                             <Setter Property="HorizontalContentAlignment" Value="Stretch" />

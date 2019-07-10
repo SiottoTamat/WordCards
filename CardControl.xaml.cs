@@ -202,5 +202,13 @@ namespace WordCards_WPF
         {
             Globals.ThisAddIn.userControlWPF.NewCard();
         }
+
+        private void CardCanvas_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left && e.ClickCount == 2)
+            {
+                Globals.ThisAddIn.userControlWPF.FocusOnText(this);
+            }
+        }
     }
 }

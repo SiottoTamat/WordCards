@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+//using System.Windows.Forms;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -41,6 +42,12 @@ namespace WordCards_WPF
         public ObservableCollection<CardControl> ListCardControls = new ObservableCollection<CardControl>();
         System.Windows.Media.Color CopiedColor = new Color();
         #endregion
+
+
+        
+
+
+
         #region MY METHODS
 
        /* public void RefreshCardsIDs()
@@ -484,13 +491,33 @@ namespace WordCards_WPF
            //Check_Consistency_With_Text();
         }
 
+        /*  private void ListViewxaml_ItemSelectionChanged(Object sender, ListViewItemSelectionChangedEventArgs e)
+          {
+              string bookmark = ListCardControls[e.ItemIndex].Bookmarkfield;
+              if (!(new[] { "None", "NONE" }.Contains(bookmark)))
+              {
+                  Word.Range range = Globals.ThisAddIn.Application.ActiveDocument.Bookmarks[bookmark].Range;
+                  range.Select();
+              }
 
 
-        #endregion
+          }
+          */
+        public void FocusOnText(CardControl card)
+        {
+            string bookmark = card.Bookmarkfield;
+            if (!(new[] { "None", "NONE" }.Contains(bookmark)))
+            {
+                Word.Range range = Globals.ThisAddIn.Application.ActiveDocument.Bookmarks[bookmark].Range;
+                range.Select();
+            }
+        }
 
-        #region ASYNC?
+            #endregion
 
-        public void Check_Consistency_With_Text(object sender, EventArgs e)
+            #region ASYNC?
+
+            public void Check_Consistency_With_Text(object sender, EventArgs e)
         {
             var watch = System.Diagnostics.Stopwatch.StartNew();
             
@@ -543,11 +570,33 @@ namespace WordCards_WPF
             //MessageBox.Show(elapsedMs.ToString());
         }
 
-        #endregion
 
 
         #endregion
 
+        #endregion
 
+        private void Import_Cards_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Export_Cards_Click(object sender, RoutedEventArgs e)
+        {
+            string text = "";
+            Color color = ListCardControls[0].Colorfield;
+            foreach (CardControl card in ListCardControls)
+            {
+                if(card.Colorfield != color)
+                {
+                    text += "------------------------------------------------------------------------" + Environment.NewLine;
+                }
+                text+= card.IDfield+". "+card.Textfield+"  -  "+"words: "+card.Wordcountxaml.Content+" pages: "+card.Pagesxaml.Content + Environment.NewLine;
+            }
+
+            ExportWindow expwin = new ExportWindow();
+            expwin.RichTextBox.AppendText(text);
+            expwin.Show();
+        }
     }
 }
