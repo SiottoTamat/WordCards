@@ -9,7 +9,7 @@
     <Grid>
         <Grid Margin="2">
             
-            <RichTextBox x:Name="RichTextBox" Grid.ColumnSpan="3" Margin="5,5,5,5">
+            <RichTextBox x:Name="RichTextBox" Grid.ColumnSpan="3" Margin="5,5,5,5" VerticalScrollBarVisibility="Auto">
                 <FlowDocument>
                     <Paragraph>
                         <Run Text="RichTextBox"/>

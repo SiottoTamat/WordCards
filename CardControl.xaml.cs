@@ -186,16 +186,16 @@ namespace WordCards_WPF
         private void Add_Card_Above_Click(object sender, RoutedEventArgs e)
         {
             
-            int index = Globals.ThisAddIn.userControlWPF.ListCardControls.IndexOf(this);
-            Globals.ThisAddIn.userControlWPF.NewCard(index);
+            int idx = Globals.ThisAddIn.userControlWPF.ListCardControls.IndexOf(this);
+            Globals.ThisAddIn.userControlWPF.NewCard(index:idx);
             
         }
 
         private void Add_Card_Below_Click(object sender, RoutedEventArgs e)
         {
             
-            int index = Globals.ThisAddIn.userControlWPF.ListCardControls.IndexOf(this)+1;
-            Globals.ThisAddIn.userControlWPF.NewCard(index);
+            int idx = Globals.ThisAddIn.userControlWPF.ListCardControls.IndexOf(this)+1;
+            Globals.ThisAddIn.userControlWPF.NewCard(index:idx);
         }
 
         private void Add_Card_Bottom_Click(object sender, RoutedEventArgs e)

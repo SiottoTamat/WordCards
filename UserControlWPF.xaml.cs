@@ -41,24 +41,25 @@ namespace WordCards_WPF
 
         public ObservableCollection<CardControl> ListCardControls = new ObservableCollection<CardControl>();
         System.Windows.Media.Color CopiedColor = new Color();
+        private const int constcolorstring = 0x00FFFC9E;
         #endregion
 
 
-        
+
 
 
 
         #region MY METHODS
 
-       /* public void RefreshCardsIDs()
-        {
-            int idx = 1;
-            foreach (CardControl carditem in ListCardControls)
-            {
-                carditem.IDfield = idx.ToString();
-                idx++;
-            }
-        }*/
+        /* public void RefreshCardsIDs()
+         {
+             int idx = 1;
+             foreach (CardControl carditem in ListCardControls)
+             {
+                 carditem.IDfield = idx.ToString();
+                 idx++;
+             }
+         }*/
 
         #region XML-ListCardControls CONNECTION
         public void LoadXmltoListCardControls(Office.CustomXMLPart xmlPart)
@@ -439,12 +440,12 @@ namespace WordCards_WPF
             return false;
         }
         
-        public void NewCard(int index = -1)
+        public void NewCard(int index = -1,string title="New Card", byte R= 255, byte G=255, byte B=160)
         {
             Globals.ThisAddIn.Application.UndoRecord.StartCustomRecord("New Card");
             CardControl card = new CardControl();
-            card.Textfield = "New Card";
-            card.Colorfield = System.Windows.Media.Color.FromRgb(250, 250, 210);
+            card.Textfield = title;
+            card.Colorfield = System.Windows.Media.Color.FromRgb(R, G, B);
             if (index == -1 || index> ListCardControls.Count) // add card at the bottom
             {
                 ListCardControls.Add(card);
@@ -578,18 +579,46 @@ namespace WordCards_WPF
 
         private void Import_Cards_Click(object sender, RoutedEventArgs e)
         {
+            Import_Window import_window = new Import_Window();
+            import_window.ShowDialog();
+            if (import_window.DialogResult.HasValue && import_window.DialogResult.Value)
+            {
+                
+                foreach(string line in import_window.TextBox.Text.Split('\n'))
+                {
+                    string templine = line.Trim(new char[] { '\t', '*', ' ' });
+                    if (templine != "" && line != "*")
+                    {
+                        NewCard(title:templine);
+                    }
+                }
 
+            }
+
+
+            Globals.ThisAddIn.Application.UndoRecord.StartCustomRecord("Import Cards");
+
+
+
+            //string cardlist =
+            Globals.ThisAddIn.Application.UndoRecord.EndCustomRecord();
         }
 
         private void Export_Cards_Click(object sender, RoutedEventArgs e)
         {
-            string text = "";
+            
+
             Color color = ListCardControls[0].Colorfield;
+
+            string text = Globals.ThisAddIn.Application.ActiveDocument.FullName + Environment.NewLine + Environment.NewLine;
+            
+
             foreach (CardControl card in ListCardControls)
             {
                 if(card.Colorfield != color)
                 {
                     text += "------------------------------------------------------------------------" + Environment.NewLine;
+                    color = card.Colorfield;
                 }
                 text+= card.IDfield+". "+card.Textfield+"  -  "+"words: "+card.Wordcountxaml.Content+" pages: "+card.Pagesxaml.Content + Environment.NewLine;
             }
@@ -597,6 +626,8 @@ namespace WordCards_WPF
             ExportWindow expwin = new ExportWindow();
             expwin.RichTextBox.AppendText(text);
             expwin.Show();
+            
+
         }
     }
 }
