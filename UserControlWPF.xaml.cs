@@ -492,7 +492,6 @@ namespace WordCards_WPF
             Globals.ThisAddIn.Application.ActiveWindow.View.ShowBookmarks = !Globals.ThisAddIn.Application.ActiveWindow.View.ShowBookmarks;
         }
 
-      
         public void FocusOnText(CardControl card)
         {
             string bookmark = card.Bookmarkfield;
@@ -502,69 +501,6 @@ namespace WordCards_WPF
                 range.Select();
             }
         }
-
-            #endregion
-
-            #region ASYNC?
-
-            public void Check_Consistency_With_Text(object sender, EventArgs e)
-        {
-            var watch = System.Diagnostics.Stopwatch.StartNew();
-            
-            
-            
-            Globals.ThisAddIn.userControlWPF.Siotto.Foreground = Brushes.Red;
-            List<string> bookmarknames= new List<string>();
-            foreach (Word.Bookmark bkm in Globals.ThisAddIn.Application.ActiveDocument.Bookmarks)
-            {
-
-                bookmarknames.Add(bkm.Name);
-                
-            }
-            
-           CardControl lastCard = new CardControl();
-            lastCard.Bookmarkfield = "NONE";
-            for (int idx=0;idx< ListCardControls.Count-1 ; idx++)// (CardControl card in ListCardControls)
-            {
-               CardControl card = ListCardControls[idx];
-               if(card.Bookmarkfield!= "None"&& card.Bookmarkfield != "NONE")// only calculate if the Card has a bookmark
-                {
-                    if (bookmarknames.Contains(card.Bookmarkfield))
-                    {
-                    if (lastCard.Bookmarkfield=="NONE" 
-                        || Globals.ThisAddIn.Application.ActiveDocument.Bookmarks[lastCard.Bookmarkfield].Range.Start 
-                        < Globals.ThisAddIn.Application.ActiveDocument.Bookmarks[card.Bookmarkfield].Range.Start)
-                    {
-                        lastCard = card;
-                    }
-                    else// 
-                    {
-                        int indexcard = ListCardControls.IndexOf(card);
-                        int indexlastcard = ListCardControls.IndexOf(lastCard);
-                        ListCardControls.Move(indexcard, indexlastcard);
-                        Globals.ThisAddIn.userControlWPF.ListViewxaml.Items.Refresh();
-                    }
-                    }
-                    else // the bookmark has been deleted by the user
-                    {
-                       
-                        card.Bookmarkfield = "None";
-                    }
-                    //card.SetStats();
-                } 
-            }
-            Globals.ThisAddIn.userControlWPF.Siotto.Foreground = Brushes.Black;
-            
-            watch.Stop();
-            var elapsedMs = watch.ElapsedMilliseconds;
-            //MessageBox.Show(elapsedMs.ToString());
-        }
-
-
-
-        #endregion
-
-        #endregion
 
         private void Import_Cards_Click(object sender, RoutedEventArgs e)
         {
@@ -595,21 +531,45 @@ namespace WordCards_WPF
 
         private void Export_Cards_Click(object sender, RoutedEventArgs e)
         {
-            
 
-            Color color = ListCardControls[0].Colorfield;
+
+            Color color = Colors.Black;//ListCardControls[0].Colorfield;
 
             string text = Globals.ThisAddIn.Application.ActiveDocument.FullName + Environment.NewLine + Environment.NewLine;
-            
-
+            bool first = true;
+            int cardsinsection = 0;
+            int wordsection = 0;
             foreach (CardControl card in ListCardControls)
             {
+                
                 if(card.Colorfield != color)
                 {
-                    text += "------------------------------------------------------------------------" + Environment.NewLine;
-                    color = card.Colorfield;
+                    if (!first)
+                    {
+
+                    
+                    if (cardsinsection==1)
+                    {
+                        text += "------------------------------------------------------------------------" + Environment.NewLine;
+                        color = card.Colorfield;
+                        wordsection = 0;
+                        cardsinsection = 0;
+                    }
+                    else
+                    {
+                        text += Environment.NewLine + "Total words in this section: " + wordsection + Environment.NewLine;
+                        text += "------------------------------------------------------------------------" + Environment.NewLine;
+                        color = card.Colorfield;
+                        wordsection = 0;
+                        cardsinsection = 0;
+                    }
+                    }
+
                 }
                 text+= card.IDfield+". "+card.Textfield+"  -  "+"words: "+card.Wordcountxaml.Content+" pages: "+card.Pagesxaml.Content + Environment.NewLine;
+                wordsection += int.Parse(card.Wordcountxaml.Content.ToString());
+                first = false;
+                cardsinsection += 1;
             }
 
             ExportWindow expwin = new ExportWindow();
@@ -628,5 +588,66 @@ namespace WordCards_WPF
         {
             Globals.ThisAddIn.Application.ActiveWindow.View.ShowBookmarks = false;
         }
+        #endregion
+
+        #region ASYNC?
+
+        public void Check_Consistency_With_Text(object sender, EventArgs e)
+        {
+            var watch = System.Diagnostics.Stopwatch.StartNew();
+
+
+
+            // Globals.ThisAddIn.userControlWPF.Siotto.Foreground = Brushes.Red;
+            List<string> bookmarknames = new List<string>();
+            foreach (Word.Bookmark bkm in Globals.ThisAddIn.Application.ActiveDocument.Bookmarks)
+            {
+
+                bookmarknames.Add(bkm.Name);
+
+            }
+
+            CardControl lastCard = new CardControl();
+            lastCard.Bookmarkfield = "NONE";
+            for (int idx = 0; idx < ListCardControls.Count - 1; idx++)// (CardControl card in ListCardControls)
+            {
+                CardControl card = ListCardControls[idx];
+                if (card.Bookmarkfield != "None" && card.Bookmarkfield != "NONE")// only calculate if the Card has a bookmark
+                {
+                    if (bookmarknames.Contains(card.Bookmarkfield))
+                    {
+                        if (lastCard.Bookmarkfield == "NONE"
+                            || Globals.ThisAddIn.Application.ActiveDocument.Bookmarks[lastCard.Bookmarkfield].Range.Start
+                            < Globals.ThisAddIn.Application.ActiveDocument.Bookmarks[card.Bookmarkfield].Range.Start)
+                        {
+                            lastCard = card;
+                        }
+                        else// 
+                        {
+                            int indexcard = ListCardControls.IndexOf(card);
+                            int indexlastcard = ListCardControls.IndexOf(lastCard);
+                            ListCardControls.Move(indexcard, indexlastcard);
+                            Globals.ThisAddIn.userControlWPF.ListViewxaml.Items.Refresh();
+                        }
+                    }
+                    else // the bookmark has been deleted by the user
+                    {
+
+                        card.Bookmarkfield = "None";
+                    }
+                    //card.SetStats();
+                }
+            }
+            // Globals.ThisAddIn.userControlWPF.Siotto.Foreground = Brushes.Black;
+
+            watch.Stop();
+            var elapsedMs = watch.ElapsedMilliseconds;
+            //MessageBox.Show(elapsedMs.ToString());
+        }
+
+
+
+        #endregion
+        #endregion
     }
 }

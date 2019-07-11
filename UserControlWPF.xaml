@@ -32,7 +32,8 @@
                     <Button x:Name="Export_Cards" Grid.Column="1" Grid.Row="1" Content="Export Cards" Margin="5" Click="Export_Cards_Click"/>
                     
                     <!--<Label x:Name="Siotto" Content="©Siotto" Grid.Column="2" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,-21,0,34"/>-->
-                    <CheckBox x:Name ="BookmarkCheckBox" Content="Show bookmarks" Grid.Column="2" HorizontalAlignment="Right" Margin="10,10,10,10" Grid.Row="1" VerticalAlignment="Top" Checked="BookmarkCheckBox_Checked" Unchecked="BookmarkCheckBox_Unchecked" FlowDirection="RightToLeft"/>
+                    <Image Source="Img/bookmarkicon.png" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,4,30,6"></Image>
+                    <CheckBox x:Name ="BookmarkCheckBox" Content="" Grid.Column="2" HorizontalAlignment="Right" Margin="10,10,10,10" Grid.Row="1" VerticalAlignment="Center" Checked="BookmarkCheckBox_Checked" Unchecked="BookmarkCheckBox_Unchecked" FlowDirection="LeftToRight"/>
                 </Grid>
             </GroupBox>
             <ScrollViewer x:Name="StackPanelScrollViewer" VerticalScrollBarVisibility="Auto" Width="{Binding ActualWidth, Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:UserControlWPF}}}">
