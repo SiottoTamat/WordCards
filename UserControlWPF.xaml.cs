@@ -535,7 +535,7 @@ namespace WordCards_WPF
 
             Color color = Colors.Black;//ListCardControls[0].Colorfield;
 
-            string text = Globals.ThisAddIn.Application.ActiveDocument.FullName + Environment.NewLine + Environment.NewLine;
+            string text = Globals.ThisAddIn.Application.ActiveDocument.Name + Environment.NewLine + Environment.NewLine;
             bool first = true;
             int cardsinsection = 0;
             int wordsection = 0;
@@ -573,6 +573,7 @@ namespace WordCards_WPF
             }
 
             ExportWindow expwin = new ExportWindow();
+            expwin.RichTextBox.Document.Blocks.Clear();
             expwin.RichTextBox.AppendText(text);
             expwin.Show();
             
