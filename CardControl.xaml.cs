@@ -131,7 +131,15 @@ namespace WordCards_WPF
                 int rangeend = Globals.ThisAddIn.Application.ActiveDocument.Bookmarks[bookmarkfield].Range.End;
                 int range = (int)Globals.ThisAddIn.Application.ActiveDocument.Range(rangestrt, rangestrt).get_Information(Microsoft.Office.Interop.Word.WdInformation.wdActiveEndPageNumber); ;
                 int range2 = (int)Globals.ThisAddIn.Application.ActiveDocument.Range(rangeend, rangeend).get_Information(Microsoft.Office.Interop.Word.WdInformation.wdActiveEndPageNumber); ;
-                Pagesxaml.Content = range.ToString() + "-" + range2.ToString();
+                if (range == range2)
+                {
+                    Pagesxaml.Content = range.ToString();
+                }
+                else
+                {
+                    Pagesxaml.Content = range.ToString() + "-" + range2.ToString();
+                }
+               
             }
             catch { }
         }
