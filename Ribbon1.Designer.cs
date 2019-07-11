@@ -51,14 +51,16 @@
             // WPFCards
             // 
             this.WPFCards.Items.Add(this.AddWPFUsrCtrl);
-            this.WPFCards.Label = "Wpf Word Cards";
+            this.WPFCards.Label = "Word Cards";
             this.WPFCards.Name = "WPFCards";
             // 
             // AddWPFUsrCtrl
             // 
             this.AddWPFUsrCtrl.Description = "Starts the Add In Panel";
+            this.AddWPFUsrCtrl.Image = global::WordCards_WPF.Properties.Resources.card_ico;
             this.AddWPFUsrCtrl.Label = "Initialize Cards";
             this.AddWPFUsrCtrl.Name = "AddWPFUsrCtrl";
+            this.AddWPFUsrCtrl.ShowImage = true;
             this.AddWPFUsrCtrl.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.WPFUsrCtrl);
             // 
             // Ribbon1

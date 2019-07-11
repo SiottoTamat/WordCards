@@ -51,7 +51,13 @@
                         </ImageBrush>
                     </ListView.Background>
                     <ListView.ItemContainerStyle>
-                        <Style TargetType="ListViewItem">
+                        <Style TargetType="{x:Type ListViewItem}">
+                            <Style.Triggers>
+                                <Trigger Property="IsSelected" Value="true" >
+                                    
+                                    <Setter Property="Background" Value="DarkBlue" />
+                                </Trigger>
+                            </Style.Triggers>
                             <Setter Property="HorizontalContentAlignment" Value="Stretch" />
                         </Style>
                     </ListView.ItemContainerStyle>
