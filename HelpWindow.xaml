@@ -1,0 +1,226 @@
+﻿<Window x:Class="WordCards_WPF.HelpWindow"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WordCards_WPF"
+             mc:Ignorable="d" d:DesignWidth="800" Title="Word Cards Help" Height="600.624" Background="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="293*"/>
+            <ColumnDefinition Width="499*"/>
+        </Grid.ColumnDefinitions>
+        <RichTextBox x:Name="HelpRichTextBox" Margin="0" VerticalScrollBarVisibility="Auto" Grid.ColumnSpan="2">
+            <FlowDocument>
+                <Paragraph FontWeight="Bold" FontSize="16" FontFamily="Times New Roman" Margin="0,0,0,10.67" TextAlignment="Right" TextIndent="48">
+                    <Span>
+                        <Run Text="Word Cards 1.0 -Andrea Siotto."/>
+                    </Span>
+                </Paragraph>
+                <Paragraph FontSize="16" FontFamily="Times New Roman" Margin="0,0,0,10.67" TextAlignment="Justify" TextIndent="48">
+                    <Span>
+                        <Run Text="Word Cards is an add in made for academic and creative writers with the intent to offer a good tool for make a schematic of what to write and connect it to the text. It works connected to bookmarks and save the data in a custom xml in the docx file, not touching the written text at all to insure data preservation."/>
+                    </Span>
+                </Paragraph>
+                <Paragraph FontSize="16" FontFamily="Times New Roman" Margin="0,0,0,10.67" TextAlignment="Justify" TextIndent="48"/>
+                <Paragraph FontSize="16" FontFamily="Times New Roman" Margin="0,0,0,10.67" TextAlignment="Justify" TextIndent="48">
+                    <Span>
+                        <Run Text="To start press the Initialize Cards button in the Ribbon and a Task pane will appear. You can move the Task pane to your pleasure, but for now the Add In is designed for a vertical layout."/>
+                    </Span>
+                </Paragraph>
+                <Paragraph FontWeight="Bold" FontSize="16" FontFamily="Times New Roman" Margin="0,0,0,10.67" TextAlignment="Justify" TextIndent="48">
+                    <Span>
+                        <Run Text="BUTTONS"/>
+                    </Span>
+                </Paragraph>
+                <Paragraph FontSize="16" FontFamily="Times New Roman" Margin="0,0,0,10.67" TextAlignment="Justify" TextIndent="48">
+                    <InlineUIContainer>
+                        <Image Height="148" Width="321" Source="Img/Top Buttons.png"  Margin="80,0,0,0"/>
+                    </InlineUIContainer>
+                </Paragraph>
+                <Paragraph FontWeight="Bold" FontSize="16" FontFamily="Times New Roman" Margin="0,0,0,10.67" TextAlignment="Justify" TextIndent="48">
+                    <Span>
+                        <Run Text="Add Card"/>
+                    </Span>
+                </Paragraph>
+                <Paragraph FontSize="16" FontFamily="Times New Roman" Margin="0,0,0,10.67" TextAlignment="Justify" TextIndent="48">
+                    <Span>
+                        <Run Text="It adds a new card to the bottom of the list. The title of the card is in the box at the bottom-left, on the top is the indication of what bookmark is linked to, and at the bottom right there is the number of the card. The numbers on the right of the w: and of the p: are the total word count of the text linked to the card and the page/pages in which the text is. "/>
+                    </Span>
+                </Paragraph>
+                <Paragraph FontSize="16" FontFamily="Times New Roman" Margin="0,0,0,10.67" TextAlignment="Justify" TextIndent="48">
+                    <InlineUIContainer>
+                        <Image Height="141" Width="321" Source="Img/Card.png"  Margin="80,0,0,0"/>
+                    </InlineUIContainer>
+                </Paragraph>
+                <Paragraph FontSize="16" FontFamily="Times New Roman" Margin="0,0,0,10.67" TextAlignment="Justify" TextIndent="48">
+                    <Span>
+                        <Run Text="If a paragraph or more is selected in the text it links the new card to the selected paragraph/s. "/>
+                    </Span>
+                </Paragraph>
+                <Paragraph FontWeight="Bold" FontSize="16" FontFamily="Times New Roman" Margin="0,0,0,10.67" TextAlignment="Justify" TextIndent="48">
+                    <Span>
+                        <Run Text="Import Cards"/>
+                    </Span>
+                </Paragraph>
+                <Paragraph FontSize="16" FontFamily="Times New Roman" Margin="0,0,0,10.67" TextAlignment="Justify" TextIndent="48">
+                    <Span>
+                        <Run Text=" It opens a new window where you can copy-paste a list of titles for cards prepared in any text editor. Every single line of the list that you copy will create a new card titled with the content of the line of text."/>
+                    </Span>
+                </Paragraph>
+                <Paragraph FontWeight="Bold" FontSize="16" FontFamily="Times New Roman" Margin="0,0,0,10.67" TextAlignment="Justify" TextIndent="48">
+                    <Span>
+                        <Run Text="Export Cards"/>
+                    </Span>
+                </Paragraph>
+                <Paragraph FontSize="16" FontFamily="Times New Roman" Margin="0,0,0,10.67" TextAlignment="Justify" TextIndent="48">
+                    <Span>
+                        <Run Text="It Opens a new window with a text version of your cards, for every card the list indicates the number of the card, the title of the card, the word count, the page/pages where the card is. Lines separate group of contiguous cards of the same color and if these groups are formed by more than one card it indicates how many words is long the whole group."/>
+                    </Span>
+                </Paragraph>
+                <Paragraph FontWeight="Bold" FontSize="16" FontFamily="Times New Roman" Margin="0,0,0,10.67" TextAlignment="Justify" TextIndent="48">
+                    <Span>
+                        <Run Text="Update Stats"/>
+                    </Span>
+                </Paragraph>
+                <Paragraph FontSize="16" FontFamily="Times New Roman" Margin="0,0,0,10.67" TextAlignment="Justify" TextIndent="48">
+                    <Span>
+                        <Run Text="It updates the statistics of the cards, namely the word count and the pages."/>
+                    </Span>
+                </Paragraph>
+                <Paragraph FontWeight="Bold" FontSize="16" FontFamily="Times New Roman" Margin="0,0,0,10.67" TextAlignment="Justify" TextIndent="48">
+                    <Span>
+                        <Run Text="Bookmark Checkbox"/>
+                    </Span>
+                </Paragraph>
+                <Paragraph BorderBrush="Black" BorderThickness="0,0,0,1" FontSize="16" FontFamily="Times New Roman" Margin="0,0,0,10.67" Padding="1.33" TextAlignment="Justify" TextIndent="48">
+                    <Span>
+                        <Run Text="If selected it show the bookmarks [as such]."/>
+                    </Span>
+                </Paragraph>
+                <Paragraph FontWeight="Bold" FontSize="16" FontFamily="Times New Roman" Margin="0,0,0,10.67" TextAlignment="Justify" TextIndent="48">
+                    <Span>
+                        <Run Text="CARD RIGHT CLICK MENU"/>
+                    </Span>
+                </Paragraph>
+                <Paragraph FontWeight="Bold" FontSize="16" FontFamily="Times New Roman" Margin="0,0,0,10.67" TextAlignment="Justify" TextIndent="48">
+                    <InlineUIContainer>
+                        <Image Height="254" Width="210" Source="Img/Menu Card.png"  Margin="159,0,0,0" HorizontalAlignment="Right"/>
+                    </InlineUIContainer>
+                </Paragraph>
+                <Paragraph FontWeight="Bold" FontSize="16" FontFamily="Times New Roman" Margin="0,0,0,10.67" TextAlignment="Justify" TextIndent="48">
+                    <Span>
+                        <Run Text="Add Card Above This One"/>
+                    </Span>
+                </Paragraph>
+                <Paragraph FontSize="16" FontFamily="Times New Roman" Margin="0,0,0,10.67" TextAlignment="Justify" TextIndent="48">
+                    <Span>
+                        <Run Text="Add a new Card on top of the selected Card."/>
+                    </Span>
+                </Paragraph>
+                <Paragraph FontWeight="Bold" FontSize="16" FontFamily="Times New Roman" Margin="0,0,0,10.67" TextAlignment="Justify" TextIndent="48">
+                    <Span>
+                        <Run Text="Add Card Below This One"/>
+                    </Span>
+                </Paragraph>
+                <Paragraph FontWeight="Bold" FontSize="16" FontFamily="Times New Roman" Margin="0,0,0,10.67" TextAlignment="Justify" TextIndent="48">
+                    <Span FontWeight="Normal">
+                        <Run Text="Add a new Card below the selected Card."/>
+                    </Span>
+                </Paragraph>
+                <Paragraph FontWeight="Bold" FontSize="16" FontFamily="Times New Roman" Margin="0,0,0,10.67" TextAlignment="Justify" TextIndent="48">
+                    <Span>
+                        <Run Text="Add Card to the Bottom"/>
+                    </Span>
+                </Paragraph>
+                <Paragraph FontSize="16" FontFamily="Times New Roman" Margin="0,0,0,10.67" TextAlignment="Justify" TextIndent="48">
+                    <Span>
+                        <Run Text="Add a new Card at the bottom of the whole list."/>
+                    </Span>
+                </Paragraph>
+                <Paragraph FontWeight="Bold" FontSize="16" FontFamily="Times New Roman" Margin="0,0,0,10.67" TextAlignment="Justify" TextIndent="48">
+                    <Span>
+                        <Run Text="Change Card Color"/>
+                    </Span>
+                </Paragraph>
+                <Paragraph FontSize="16" FontFamily="Times New Roman" Margin="0,0,0,10.67" TextAlignment="Justify" TextIndent="48">
+                    <Span>
+                        <Run Text="Open a dialog to choose the color of the Card."/>
+                    </Span>
+                </Paragraph>
+                <Paragraph FontWeight="Bold" FontSize="16" FontFamily="Times New Roman" Margin="0,0,0,10.67" TextAlignment="Justify" TextIndent="48">
+                    <Span>
+                        <Run Text="Copy Card Color"/>
+                    </Span>
+                </Paragraph>
+                <Paragraph FontSize="16" FontFamily="Times New Roman" Margin="0,0,0,10.67" TextAlignment="Justify" TextIndent="48">
+                    <Span>
+                        <Run Text="Copies the color of the selected Card."/>
+                    </Span>
+                </Paragraph>
+                <Paragraph FontWeight="Bold" FontSize="16" FontFamily="Times New Roman" Margin="0,0,0,10.67" TextAlignment="Justify" TextIndent="48">
+                    <Span>
+                        <Run Text="Paste Card Color"/>
+                    </Span>
+                </Paragraph>
+                <Paragraph FontSize="16" FontFamily="Times New Roman" Margin="0,0,0,10.67" TextAlignment="Justify" TextIndent="48">
+                    <Span>
+                        <Run Text="Paste the previously copied color to the Card/Cards selected."/>
+                    </Span>
+                </Paragraph>
+                <Paragraph FontWeight="Bold" FontSize="16" FontFamily="Times New Roman" Margin="0,0,0,10.67" TextAlignment="Justify" TextIndent="48">
+                    <Span>
+                        <Run Text="Move Card Up"/>
+                    </Span>
+                </Paragraph>
+                <Paragraph FontSize="16" FontFamily="Times New Roman" Margin="0,0,0,10.67" TextAlignment="Justify" TextIndent="48">
+                    <Span>
+                        <Run Text="Move the Card one step up in the list. If the Card is connected to some text and the Card above is too it moves the text accordingly."/>
+                    </Span>
+                </Paragraph>
+                <Paragraph FontWeight="Bold" FontSize="16" FontFamily="Times New Roman" Margin="0,0,0,10.67" TextAlignment="Justify" TextIndent="48">
+                    <Span>
+                        <Run Text="Move Card Down"/>
+                    </Span>
+                </Paragraph>
+                <Paragraph FontWeight="Bold" FontSize="16" FontFamily="Times New Roman" Margin="0,0,0,10.67" TextAlignment="Justify" TextIndent="48">
+                    <Span FontWeight="Normal">
+                        <Run Text="Move the Card one step down in the list. If the Card is connected to some text and the Card below is too it moves the text accordingly."/>
+                    </Span>
+                </Paragraph>
+                <Paragraph FontWeight="Bold" FontSize="16" FontFamily="Times New Roman" Margin="0,0,0,10.67" TextAlignment="Justify" TextIndent="48">
+                    <Span>
+                        <Run Text="Link Text to Card"/>
+                    </Span>
+                </Paragraph>
+                <Paragraph FontSize="16" FontFamily="Times New Roman" Margin="0,0,0,10.67" TextAlignment="Justify" TextIndent="48">
+                    <Span>
+                        <Run Text="Link one or more selected paragraphs to the card, creating a new bookmark. The name of the bookmark will appear on top of the Card."/>
+                    </Span>
+                </Paragraph>
+                <Paragraph FontWeight="Bold" FontSize="16" FontFamily="Times New Roman" Margin="0,0,0,10.67" TextAlignment="Justify" TextIndent="48">
+                    <Span>
+                        <Run Text="Unlink Text from Card"/>
+                    </Span>
+                </Paragraph>
+                <Paragraph FontSize="16" FontFamily="Times New Roman" Margin="0,0,0,10.67" TextAlignment="Justify" TextIndent="48">
+                    <Span>
+                        <Run Text="Disconnect the paragraph/s connected to the Card and deletes the relative bookmark."/>
+                    </Span>
+                </Paragraph>
+                <Paragraph FontWeight="Bold" FontSize="16" FontFamily="Times New Roman" Margin="0,0,0,10.67" TextAlignment="Justify" TextIndent="48">
+                    <Span>
+                        <Run Text="Delete Card"/>
+                    </Span>
+                </Paragraph>
+                <Paragraph FontSize="16" FontFamily="Times New Roman" Margin="0,0,0,10.67" TextAlignment="Justify" TextIndent="48">
+                    <Span>
+                        <Run Text="Deletes the Card from the list (It does not delete the text connected to the Card)."/>
+
+                    </Span>
+                </Paragraph>
+            </FlowDocument>
+        </RichTextBox>
+
+    </Grid>
+</Window>

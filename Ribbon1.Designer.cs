@@ -37,6 +37,7 @@
             this.tab1 = this.Factory.CreateRibbonTab();
             this.WPFCards = this.Factory.CreateRibbonGroup();
             this.AddWPFUsrCtrl = this.Factory.CreateRibbonButton();
+            this.buttonHelp = this.Factory.CreateRibbonButton();
             this.tab1.SuspendLayout();
             this.WPFCards.SuspendLayout();
             this.SuspendLayout();
@@ -51,6 +52,7 @@
             // WPFCards
             // 
             this.WPFCards.Items.Add(this.AddWPFUsrCtrl);
+            this.WPFCards.Items.Add(this.buttonHelp);
             this.WPFCards.Label = "Word Cards";
             this.WPFCards.Name = "WPFCards";
             // 
@@ -62,6 +64,12 @@
             this.AddWPFUsrCtrl.Name = "AddWPFUsrCtrl";
             this.AddWPFUsrCtrl.ShowImage = true;
             this.AddWPFUsrCtrl.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.WPFUsrCtrl);
+            // 
+            // buttonHelp
+            // 
+            this.buttonHelp.Label = "Help";
+            this.buttonHelp.Name = "buttonHelp";
+            this.buttonHelp.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.ButtonHelp_Click);
             // 
             // Ribbon1
             // 
@@ -82,6 +90,7 @@
         internal Microsoft.Office.Tools.Ribbon.RibbonTab tab1;
         internal Microsoft.Office.Tools.Ribbon.RibbonGroup WPFCards;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton AddWPFUsrCtrl;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton buttonHelp;
     }
 
     partial class ThisRibbonCollection

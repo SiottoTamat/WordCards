@@ -19,5 +19,11 @@ namespace WordCards_WPF
             
             Globals.ThisAddIn.InitializeCards();
         }
+
+        private void ButtonHelp_Click(object sender, RibbonControlEventArgs e)
+        {
+            HelpWindow helpWindow = new HelpWindow();
+            helpWindow.Show();
+        }
     }
 }
