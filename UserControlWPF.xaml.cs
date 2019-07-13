@@ -601,51 +601,58 @@ namespace WordCards_WPF
 
             // Globals.ThisAddIn.userControlWPF.Siotto.Foreground = Brushes.Red;
             List<string> bookmarknames = new List<string>();
-            foreach (Word.Bookmark bkm in Globals.ThisAddIn.Application.ActiveDocument.Bookmarks)
+            if(Globals.ThisAddIn.myCustomTaskPane.Window == Globals.ThisAddIn.Application.ActiveWindow)// doublecheck that it is working on the same window that created it
             {
-
-                bookmarknames.Add(bkm.Name);
-
-            }
-
-            CardControl lastCard = new CardControl();
-            lastCard.Bookmarkfield = "NONE";
-            for (int idx = 0; idx < ListCardControls.Count - 1; idx++)// (CardControl card in ListCardControls)
-            {
-                CardControl card = ListCardControls[idx];
-                if (card.Bookmarkfield != "None" && card.Bookmarkfield != "NONE")// only calculate if the Card has a bookmark
+                MessageBox.Show("Let's do nothing");
+                        
+                foreach (Word.Bookmark bkm in Globals.ThisAddIn.Application.ActiveDocument.Bookmarks)
                 {
-                    if (bookmarknames.Contains(card.Bookmarkfield))
-                    {
-                        if (lastCard.Bookmarkfield == "NONE"
-                            || Globals.ThisAddIn.Application.ActiveDocument.Bookmarks[lastCard.Bookmarkfield].Range.Start
-                            < Globals.ThisAddIn.Application.ActiveDocument.Bookmarks[card.Bookmarkfield].Range.Start)
-                        {
-                            lastCard = card;
-                        }
-                        else// 
-                        {
-                            int indexcard = ListCardControls.IndexOf(card);
-                            int indexlastcard = ListCardControls.IndexOf(lastCard);
-                            ListCardControls.Move(indexcard, indexlastcard);
-                            Globals.ThisAddIn.userControlWPF.ListViewxaml.Items.Refresh();
-                        }
-                    }
-                    else // the bookmark has been deleted by the user
-                    {
 
-                        card.Bookmarkfield = "None";
-                    }
-                    //card.SetStats();
+                    bookmarknames.Add(bkm.Name);
+
                 }
+
+                CardControl lastCard = new CardControl();
+                lastCard.Bookmarkfield = "NONE";
+                for (int idx = 0; idx < ListCardControls.Count - 1; idx++)// (CardControl card in ListCardControls)
+                {
+                    CardControl card = ListCardControls[idx];
+                    if (card.Bookmarkfield != "None" && card.Bookmarkfield != "NONE")// only calculate if the Card has a bookmark
+                    {
+                        if (bookmarknames.Contains(card.Bookmarkfield))
+                        {
+                        
+                            if (lastCard.Bookmarkfield == "NONE"
+                                || Globals.ThisAddIn.Application.ActiveDocument.Bookmarks[lastCard.Bookmarkfield].Range.Start
+                                < Globals.ThisAddIn.Application.ActiveDocument.Bookmarks[card.Bookmarkfield].Range.Start)
+                            {
+                                lastCard = card;
+                            }
+                            else// 
+                            {
+                                int indexcard = ListCardControls.IndexOf(card);
+                                int indexlastcard = ListCardControls.IndexOf(lastCard);
+                                ListCardControls.Move(indexcard, indexlastcard);
+                                Globals.ThisAddIn.userControlWPF.ListViewxaml.Items.Refresh();
+                            }
+                        }
+                        else // the bookmark has been deleted by the user
+                        {
+                            MessageBox.Show("Oops there is an inconsistency with the bookmarks");
+                            card.Bookmarkfield = "None";
+                        }
+                        //card.SetStats();
+                    }
+                }
+                // Globals.ThisAddIn.userControlWPF.Siotto.Foreground = Brushes.Black;
+
+                watch.Stop();
+                var elapsedMs = watch.ElapsedMilliseconds;
+                    //MessageBox.Show(elapsedMs.ToString());
+
+
             }
-            // Globals.ThisAddIn.userControlWPF.Siotto.Foreground = Brushes.Black;
-
-            watch.Stop();
-            var elapsedMs = watch.ElapsedMilliseconds;
-            //MessageBox.Show(elapsedMs.ToString());
         }
-
 
 
         #endregion

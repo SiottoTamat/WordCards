@@ -30,7 +30,7 @@ namespace WordCards_WPF
         public StackPanel stackpanelCards;
         public UserControlWPF userControlWPF;
 
-        private Microsoft.Office.Tools.CustomTaskPane myCustomTaskPane;
+        public Microsoft.Office.Tools.CustomTaskPane myCustomTaskPane;
         public Office.CustomXMLPart myXML;
 
         
