@@ -603,7 +603,7 @@ namespace WordCards_WPF
             List<string> bookmarknames = new List<string>();
             if(Globals.ThisAddIn.myCustomTaskPane.Window == Globals.ThisAddIn.Application.ActiveWindow)// doublecheck that it is working on the same window that created it
             {
-                MessageBox.Show("Let's do nothing");
+                
                         
                 foreach (Word.Bookmark bkm in Globals.ThisAddIn.Application.ActiveDocument.Bookmarks)
                 {
